@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/MetronomeToken/metronome-api#readme",
   "dependencies": {
+    "async": "^2.6.0",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
@@ -38,6 +39,7 @@
     "mongoose-cu-timestamps": "^1.0.0",
     "on-finished": "^2.3.0",
     "pretty-ms": "^3.0.1",
+    "web3": "^0.19.0",
     "winston": "^2.4.0",
     "winston-child-logger": "0.0.1",
     "winston-sentry-transport": "^1.0.0"
