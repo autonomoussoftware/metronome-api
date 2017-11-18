@@ -31,6 +31,7 @@
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "express-rest-api": "^0.1.0",
+    "figlet": "^1.2.0",
     "milieu": "^1.7.1",
     "mongoose": "^4.13.4",
     "mongoose-count-and-find": "^1.0.0",
