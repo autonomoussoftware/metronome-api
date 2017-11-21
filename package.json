@@ -6,7 +6,9 @@
   "scripts": {
     "start": "./bin/mtn-api",
     "dev": "nodemon ./bin/mtn-api",
-    "test": "npm test"
+    "test": "npm test",
+    "lint": "eslint . --ext .js",
+    "lint:fix": "eslint . --fix .js"
   },
   "repository": {
     "type": "git",
