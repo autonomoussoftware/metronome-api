@@ -12,24 +12,25 @@ function queryEvents (req, res, next) {
     .limit(req.limit)
     .sort(req.sort)
     .lean()
-    .exec((err, events, roleCount) => {
+    .exec((err, events, count) => {
       if (err) { return next(err) }
 
       req.logger.verbose('Sending events to client')
-      res.sendQueried(events, roleCount)
+      res.send({ events, count })
     })
 }
 
 function findEventById (req, res, next) {
   req.logger.info(`Finding event with id ${req.params.id}`)
 
-  req.model('Event').findById(req.params.id, (err, event) => {
-    if (err) { return next(err) }
-    if (!event) { return res.status(404).end() }
+  req.model('Event').findById(req.params.id)
+    .then((event) => {
+      if (!event) { return res.status(404).end() }
 
-    req.logger.verbose('Sending event to client')
-    return res.sendFound(event)
-  })
+      req.logger.verbose('Sending event to client')
+      return res.sendFound(event)
+    })
+    .catch(err => next(err))
 }
 
 module.exports = router
