@@ -25,7 +25,7 @@ const config = milieu('mtn', {
   },
 
   eth: {
-    rpcUrl: 'http://localhost:8545',
+    ipcPath: `${process.env['HOME']}/Library/Ethereum/geth.ipc`,
     tokenShortName: 'GNT',
     tokenAddress: '0xb4c79dab8f259c7aee6e5b2aa729821864227e84',
     tokenDecimals: 18,
