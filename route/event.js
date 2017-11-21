@@ -28,7 +28,7 @@ function findEventById (req, res, next) {
       if (!event) { return res.status(404).end() }
 
       req.logger.verbose('Sending event to client')
-      return res.sendFound(event)
+      return res.send(event)
     })
     .catch(err => next(err))
 }
