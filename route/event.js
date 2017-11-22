@@ -8,8 +8,6 @@ router.get('/:id', findEventById)
 function queryEvents (req, res, next) {
   req.logger.info(`Querying events: ${JSON.stringify(req.query)}`)
 
-  console.log(req.query)
-
   req.model('Event').countAndFind(req.query)
     .skip(req.skip)
     .limit(req.limit)
@@ -39,24 +37,12 @@ function findEventById (req, res, next) {
 function findEventsByAccount (req, res, next) {
   req.logger.info(`Finding events with account ${req.params.address}`)
 
-  const query = { $or: [
+  req.query = { $or: [
     { 'metaData.returnValues._from': req.params.address },
     { 'metaData.returnValues._to': req.params.address }
   ]}
 
-  console.log(query)
-
-  req.model('Event').countAndFind(query)
-    .skip(req.skip)
-    .limit(req.limit)
-    .sort(req.sort)
-    .lean()
-    .exec((err, events, count) => {
-      if (err) { return next(err) }
-
-      req.logger.verbose('Sending events to client')
-      return res.send({ events, count })
-    })
+  return queryEvents(req, res, next)
 }
 
 module.exports = router
