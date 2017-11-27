@@ -3,7 +3,7 @@ const milieu = require('milieu')
 const config = milieu('mtn', {
   server: {
     maxResultsLimit: 1000,
-    port: 3000
+    port: 3001
   },
 
   mongo: {
@@ -33,7 +33,9 @@ const config = milieu('mtn', {
     tokenDescription: 'Golem Network Token',
     tokenTotalSupply: -1,
 
-    exportStartBlock: 0
+    exportStartBlock: 0,
+
+    mtnAddress: '0x62d69f6867a0a084c6d313943dc22023bc263691'
   }
 })
 
