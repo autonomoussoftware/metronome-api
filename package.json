@@ -35,18 +35,20 @@
     "express": "^4.16.2",
     "express-rest-api": "^0.1.0",
     "figlet": "^1.2.0",
+    "human-standard-token-abi": "^1.0.2",
     "milieu": "^1.7.1",
     "mongoose": "^4.13.4",
     "mongoose-count-and-find": "^1.0.0",
     "mongoose-cu-timestamps": "^1.0.0",
     "on-finished": "^2.3.0",
     "pretty-ms": "^3.0.1",
+    "socket.io": "^2.0.4",
     "web3": "^1.0.0-beta.26",
     "winston": "^2.4.0",
     "winston-child-logger": "0.0.1",
     "winston-sentry-transport": "^1.0.0",
-    "metronomejs": "git@github.com:MetronomeToken/metronomejs.git#beta-3",
-    "erc20js": "git@github.com:bloq/erc20js.git"
+    "erc20js": "git@github.com:bloq/erc20js.git",
+    "metronomejs": "git@github.com:MetronomeToken/metronomejs.git#beta-3"
   },
   "devDependencies": {
     "eslint": "^4.11.0",
@@ -55,7 +57,6 @@
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
-    "nodemon": "^1.12.1",
-    "socket.io": "^2.0.4"
+    "nodemon": "^1.12.1"
   }
 }
