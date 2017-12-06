@@ -22,9 +22,9 @@ function queryEvents (req, res, next) {
 }
 
 function findEventById (req, res, next) {
-  req.logger.info(`Finding event with id ${req.params.address}`)
+  req.logger.info(`Finding event with id ${req.params.id}`)
 
-  req.model('Event').findById(req.params.address)
+  req.model('Event').findById(req.params.id)
     .then((event) => {
       if (!event) { return res.status(404).end() }
 
