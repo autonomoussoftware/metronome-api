@@ -26,13 +26,8 @@ const config = milieu('mtn', {
 
   eth: {
     ipcPath: `${process.env['HOME']}/Library/Ethereum/geth.ipc`,
-    tokenShortName: 'GNT',
-    tokenAddress: '0xb4c79dab8f259c7aee6e5b2aa729821864227e84',
-    tokenDecimals: 18,
-    tokenName: 'Golem Network Token',
-    tokenDescription: 'Golem Network Token',
-    tokenTotalSupply: -1,
-
+    webSocketUrl: 'ws://localhost:8545',
+    tokenAddress: '0x0ba316eb45232779903964f472799be12dff7a64',
     exportStartBlock: 0
   }
 })
