@@ -3,4 +3,5 @@ coverage
 *.log*
 .DS_Store
 .mtnrc
+.mtnrc.*
 .vscode
