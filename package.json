@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "./bin/mtn-api",
+    "config": "./bin/mtn-config --explain-config",
     "dev": "nodemon ./bin/mtn-api",
     "test": "npm test",
     "lint": "eslint . --ext .js",
