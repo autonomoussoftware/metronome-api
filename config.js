@@ -35,7 +35,7 @@ const config = milieu('mtn', {
 
     exportStartBlock: 0,
 
-    mtnAddress: '0x62d69f6867a0a084c6d313943dc22023bc263691'
+    auctionAddress: '0xf3ae5bf2702fd9fde72ccda61a3331d051368037'
   }
 })
 
