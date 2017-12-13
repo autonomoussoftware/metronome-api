@@ -13,12 +13,12 @@ function getRoot (req, res) {
 }
 
 function getStatus (req, res, next) {
-  req.pingDatabase((err, result) => {
-    if (err) { return next(err) }
-    if (!result || !result.ok) { return res.sendStatus(503) }
-
-    res.sendStatus(204)
-  })
+  req.pingDatabase()
+    .then(result => {
+      if (!result || !result.ok) { return res.sendStatus(503) }
+      res.sendStatus(204)
+    })
+    .catch(err => next(err))
 }
 
 module.exports = router
