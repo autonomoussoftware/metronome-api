@@ -19,12 +19,17 @@ const config = milieu('mtn', {
     sentry: {
       dsn: ''
     },
+
     console: {
       level: 'debug',
       timestamp: true,
       handleExceptions: true,
       humanReadableUnhandledException: true,
       colorize: true
+    },
+
+    papertrail: {
+
     }
   },
 
