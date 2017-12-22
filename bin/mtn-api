@@ -5,4 +5,4 @@ const mtnApi = require('../')
 
 mtnApi.start()
   .then(() => mtnApi.logger.info(`Listening for HTTP requests 🚀 🔥`))
-  .catch(err => { throw err })
+  .catch(err => { throw new Error(err) })
