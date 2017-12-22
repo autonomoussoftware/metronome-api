@@ -34,6 +34,7 @@ const config = milieu('mtn', {
   },
 
   eth: {
+    enabled: true,
     ipcPath: `${process.env['HOME']}/Library/Ethereum/geth.ipc`,
     webSocketUrl: 'ws://localhost:8546',
     tokenAddress: '0x7cb6622385665e7f6b7d2a7059972df922cb76f8',
