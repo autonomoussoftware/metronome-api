@@ -6,6 +6,10 @@ const config = milieu('mtn', {
     port: 3000
   },
 
+  cors: {
+    origin: '*'
+  },
+
   mongo: {
     url: 'mongodb://localhost/mtn',
     testUrl: 'mongodb://localhost/mtn-test'
