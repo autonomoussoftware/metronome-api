@@ -5,3 +5,5 @@ coverage
 .mtnrc
 .mtnrc.*
 .vscode
+
+.elasticbeanstalk/
