@@ -1,0 +1,62 @@
+{
+  "name": "metronome-api",
+  "version": "1.0.0",
+  "description": "🖲 Metronome Token REST API",
+  "main": "index.js",
+  "scripts": {
+    "start": "./bin/mtn-api",
+    "config": "./bin/mtn-config --explain-config true",
+    "dev": "nodemon ./bin/mtn-api",
+    "test": "npm test",
+    "lint": "eslint . --ext .js",
+    "lint:fix": "eslint . --fix .js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MetronomeToken/metronome-api.git"
+  },
+  "keywords": [
+    "mtn",
+    "token",
+    "metronome",
+    "api",
+    "rest"
+  ],
+  "author": "Ignacio Anaya <ignacio.anaya89@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MetronomeToken/metronome-api/issues"
+  },
+  "homepage": "https://github.com/MetronomeToken/metronome-api#readme",
+  "dependencies": {
+    "async": "^2.6.0",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "erc20js": "git@github.com:bloq/erc20js.git",
+    "express": "^4.16.2",
+    "express-rest-api": "^0.1.0",
+    "figlet": "^1.2.0",
+    "metronomejs": "git@github.com:MetronomeToken/metronomejs.git#beta-3",
+    "milieu": "^1.7.1",
+    "mongoose": "^4.13.4",
+    "mongoose-count-and-find": "^1.0.0",
+    "mongoose-cu-timestamps": "^1.0.0",
+    "on-finished": "^2.3.0",
+    "pretty-ms": "^3.0.1",
+    "socket.io": "^2.0.4",
+    "web3": "^1.0.0-beta.27",
+    "winston": "^2.4.0",
+    "winston-child-logger": "0.0.1",
+    "winston-papertrail": "^1.0.5",
+    "winston-sentry-transport": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.11.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "nodemon": "^1.12.1"
+  }
+}

@@ -1,0 +1,11 @@
+node_modules
+coverage
+*.log*
+.DS_Store
+.mtnrc
+.mtnrc.*
+.vscode
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
