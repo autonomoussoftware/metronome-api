@@ -20,3 +20,5 @@ deploy:
   app: "metronome-api"
   env: "metronome-api-dev"
   bucket_name: "elasticbeanstalk-sa-east-1-869739316835"
+  on:
+    branch: develop
