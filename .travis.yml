@@ -22,3 +22,12 @@ deploy:
   bucket_name: "elasticbeanstalk-sa-east-1-869739316835"
   on:
     branch: develop
+  provider: elasticbeanstalk
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  region: "sa-east-1"
+  app: "metronome-api"
+  env: "metronome-api-prod"
+  bucket_name: "elasticbeanstalk-sa-east-1-869739316835"
+  on:
+    branch: master
