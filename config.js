@@ -28,17 +28,15 @@ const config = milieu('mtn', {
       colorize: true
     },
 
-    papertrail: {
-
-    }
+    papertrail: {}
   },
 
   eth: {
     enabled: true,
     ipcPath: `${process.env['HOME']}/Library/Ethereum/geth.ipc`,
     webSocketUrl: 'ws://localhost:8546',
-    tokenAddress: '0x7cb6622385665e7f6b7d2a7059972df922cb76f8',
-    auctionAddress: '0x151d91d3f7a4a1be0a9efc03a878f8fdc8f0b772',
+    tokenAddress: '0x02d0f0275244938bac719caa2621da17c503e347',
+    auctionAddress: '0xf657ced37343dbc441977678edae66fe0fdac5a1',
     exportStartBlock: 0
   }
 })
