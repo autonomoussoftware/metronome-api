@@ -18,7 +18,7 @@ deploy:
   secret_access_key: $AWS_SECRET_ACCESS_KEY
   region: "sa-east-1"
   app: "metronome-api"
-  env: "metronome-api-dev"
+  env: "development"
   bucket_name: "elasticbeanstalk-sa-east-1-869739316835"
   on:
     branch: develop
@@ -27,7 +27,7 @@ deploy:
   secret_access_key: $AWS_SECRET_ACCESS_KEY
   region: "sa-east-1"
   app: "metronome-api"
-  env: "metronome-api-prod"
+  env: "production"
   bucket_name: "elasticbeanstalk-sa-east-1-869739316835"
   on:
     branch: master
