@@ -1,4 +1,3 @@
-/* global describe expect beforeAll afterAll test */
 require('./config')
 
 let request = require('request')
