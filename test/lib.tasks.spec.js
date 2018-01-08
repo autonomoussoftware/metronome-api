@@ -16,6 +16,7 @@ const metronomeMock = {
       auctionStartTime: () => ({ call: () => Promise.resolve() }),
       auctionSupply: () => ({ call: () => Promise.resolve() }),
       currentPrice: () => ({ call: () => Promise.resolve() }),
+      currentAuction: () => ({ call: () => Promise.resolve() }),
       genesisTime: () => ({ call: () => Promise.resolve() }),
       globalMtnSupply: () => ({ call: () => Promise.resolve() }),
       lastPurchasePrice: () => ({ call: () => Promise.resolve() }),
