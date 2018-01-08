@@ -44,6 +44,7 @@
     "mongoose-cu-timestamps": "^1.0.0",
     "on-finished": "^2.3.0",
     "pretty-ms": "^3.0.1",
+    "promise-all-props": "^1.0.1",
     "socket.io": "^2.0.4",
     "web3": "^1.0.0-beta.27",
     "winston": "^2.4.0",
