@@ -36,7 +36,7 @@ const latestBlockMock = {
 }
 const web3Mock = {
   eth: {
-    getBlock: () => latestBlockMock,
+    getBlock: () => new Promise(() => latestBlockMock),
     subscribe: () => {}
   },
   utils: {
@@ -62,6 +62,7 @@ describe('Task object', function () {
       },
       io: {
         emit: function (event, data) {
+
           expect(event).toEqual(auctionStatusEvent)
           expect(data).toHaveProperty('lastPurchasePrice')
           expect(data).toHaveProperty('lastPurchaseTime')
