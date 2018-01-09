@@ -37,7 +37,7 @@ const latestBlockMock = {
 }
 const web3Mock = {
   eth: {
-    getBlock: () => new Promise(() => latestBlockMock),
+    getBlock: () => Promise.resolve(latestBlockMock),
     subscribe: () => {}
   },
   utils: {
