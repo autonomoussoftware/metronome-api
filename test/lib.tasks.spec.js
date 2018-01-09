@@ -62,7 +62,6 @@ describe('Task object', function () {
       },
       io: {
         emit: function (event, data) {
-
           expect(event).toEqual(auctionStatusEvent)
           expect(data).toHaveProperty('lastPurchasePrice')
           expect(data).toHaveProperty('lastPurchaseTime')
