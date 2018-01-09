@@ -32,7 +32,8 @@ const metronomeMock = {
   }
 }
 const latestBlockMock = {
-  timestamp: 0
+  timestamp: 0,
+  number: 0
 }
 const web3Mock = {
   eth: {
@@ -49,6 +50,7 @@ const ethApiMock = {
   getWeb3: () => web3Mock
 }
 const auctionStatusEvent = 'AUCTION_STATUS_TASK'
+const latestBlockEvent = 'LATEST_BLOCK'
 
 describe('Task object', function () {
   test('emit status on new block event', function (done) {
@@ -58,14 +60,22 @@ describe('Task object', function () {
 
     const socketMock = {
       events: {
+        LATEST_BLOCK: latestBlockEvent,
         AUCTION_STATUS_TASK: auctionStatusEvent
       },
       io: {
         emit: function (event, data) {
-          expect(event).toEqual(auctionStatusEvent)
-          expect(data).toHaveProperty('lastPurchasePrice')
-          expect(data).toHaveProperty('lastPurchaseTime')
-          expect(data).toHaveProperty('nextAuctionStartTime')
+          if (event === latestBlockEvent) {
+            expect(data).toHaveProperty('number')
+            expect(data).toHaveProperty('timestamp')
+          }
+          else if (event === auctionStatusEvent) {
+            expect(data).toHaveProperty('lastPurchasePrice')
+            expect(data).toHaveProperty('lastPurchaseTime')
+            expect(data).toHaveProperty('nextAuctionStartTime')
+          } else {
+            throw error('Wrong emitted event')
+          }
 
           web3Mock.eth.subscribe = subscribe
           done()
@@ -76,7 +86,7 @@ describe('Task object', function () {
 
     // eslint-disable-next-line no-new
     new Task(null, loggerMock, null, ethApiMock, socketMock)
-    emitter.emit('newBlockHeaders', {})
+    emitter.emit('newBlockHeaders', latestBlockMock)
   })
 
   test('emit status on connection', function (done) {
@@ -84,6 +94,7 @@ describe('Task object', function () {
 
     const socketMock = {
       events: {
+        LATEST_BLOCK: latestBlockEvent,
         AUCTION_STATUS_TASK: auctionStatusEvent
       },
       io: ioEmitter
@@ -94,6 +105,13 @@ describe('Task object', function () {
       expect(data).toHaveProperty('lastPurchasePrice')
       expect(data).toHaveProperty('lastPurchaseTime')
       expect(data).toHaveProperty('nextAuctionStartTime')
+
+      done()
+    })
+
+    socketEmitter.on(latestBlockEvent, function (data) {
+      expect(data).toHaveProperty('number')
+      expect(data).toHaveProperty('timestamp')
 
       done()
     })
