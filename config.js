@@ -37,7 +37,8 @@ const config = milieu('mtn', {
     webSocketUrl: 'ws://localhost:8546',
     tokenAddress: '0x02d0f0275244938bac719caa2621da17c503e347',
     auctionAddress: '0xf657ced37343dbc441977678edae66fe0fdac5a1',
-    exportStartBlock: 0
+    exportStartBlock: 0,
+    tokenDecimals: 18
   }
 })
 
