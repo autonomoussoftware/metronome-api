@@ -6,7 +6,6 @@ coverage
 .mtnrc.*
 .vscode
 # Elastic Beanstalk Files
-.ebextensions/*
 .elasticbeanstalk/*
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
