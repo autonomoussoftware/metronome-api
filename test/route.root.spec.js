@@ -1,10 +1,10 @@
-require('./config')
+const config = require('./config')
+config.server.port = 9001
 
 let request = require('request')
-// const sinon = require('sinon')
 
 const mtnApi = require('../')
-request = request.defaults({ baseUrl: 'http://localhost:9000' })
+request = request.defaults({ baseUrl: 'http://localhost:9001' })
 
 describe('Root Routes', () => {
   beforeAll(() => mtnApi.start())

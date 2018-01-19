@@ -7,9 +7,11 @@ const loggerMock = {
   info: console.log.bind(console),
   verbose: console.log.bind(console)
 }
+
 const nextAuctionMock = {
   _startTime: 0
 }
+
 const metronomeMock = {
   auctions: {
     methods: {
@@ -25,30 +27,36 @@ const metronomeMock = {
       nextAuction: () => ({ call: () => Promise.resolve(nextAuctionMock) })
     }
   },
+
   mtntoken: {
     methods: {
       totalSupply: () => ({ call: () => Promise.resolve() })
     }
   }
 }
+
 const latestBlockMock = {
   timestamp: 0,
   number: 0
 }
+
 const web3Mock = {
   eth: {
     getBlock: () => Promise.resolve(latestBlockMock),
     subscribe: () => {}
   },
+
   utils: {
     fromWei: () => {}
   }
 }
+
 const ethApiMock = {
   getMetronome: () => metronomeMock,
   getToken: () => {},
   getWeb3: () => web3Mock
 }
+
 const auctionStatusEvent = 'AUCTION_STATUS_TASK'
 const latestBlockEvent = 'LATEST_BLOCK'
 
@@ -74,7 +82,7 @@ describe('Task object', function () {
             expect(data).toHaveProperty('lastPurchaseTime')
             expect(data).toHaveProperty('nextAuctionStartTime')
           } else {
-            throw error('Wrong emitted event')
+            throw Error('Wrong emitted event')
           }
 
           web3Mock.eth.subscribe = subscribe
