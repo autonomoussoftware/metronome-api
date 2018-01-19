@@ -22,7 +22,10 @@ describe('Event Routes', () => {
       .then(done)
   })
 
-  afterAll(() => mtnApi.stop())
+  afterAll(() => {
+    connection.collection('events').remove({})
+      .then(() => mtnApi.stop())
+  })
 
   describe('Query Events Route - GET /event', () => {
     test('responds with all events', done => {

@@ -1,4 +1,5 @@
-require('./config')
+const config = require('./config')
+config.server.port = 9000
 
 let request = require('request')
 
@@ -21,10 +22,13 @@ describe('Account Routes', () => {
       .then(done)
   })
 
-  afterAll(() => mtnApi.stop())
+  afterAll(() => {
+    connection.collection('accounts').remove({})
+      .then(() => mtnApi.stop())
+  })
 
   describe('Query Accounts Route - GET /account', () => {
-    test('responds all accounts', done => {
+    test('responds with all accounts', done => {
       request.get('/account', { json: true }, (err, clientRes) => {
         if (err) { return done(err) }
 
