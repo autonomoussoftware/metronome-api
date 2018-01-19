@@ -5,7 +5,7 @@ router.get('/', queryAccounts)
 router.get('/:address', findAccountByAddress)
 
 function queryAccounts (req, res, next) {
-  req.logger.info('Querying accounts', req.query)
+  req.logger.info(`Querying accounts: ${req.query}`)
 
   req.model('Account').countAndFind(req.query)
     .skip(req.skip)
