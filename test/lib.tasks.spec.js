@@ -3,9 +3,9 @@ const EventEmitter = require('events')
 const Task = require('../lib/tasks')
 
 const loggerMock = {
-  error: console.log.bind(console),
-  info: console.log.bind(console),
-  verbose: console.log.bind(console)
+  error: () => {},
+  info: () => {},
+  verbose: () => {}
 }
 
 const nextAuctionMock = {
