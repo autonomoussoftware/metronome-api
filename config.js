@@ -31,6 +31,11 @@ const config = milieu('mtn', {
     papertrail: {}
   },
 
+  newrelic: {
+    licenseKey: '',
+    appName: 'metronome-api'
+  },
+
   eth: {
     enabled: true,
     ipcPath: `${process.env['HOME']}/Library/Ethereum/geth.ipc`,
