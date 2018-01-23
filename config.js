@@ -28,7 +28,10 @@ const config = milieu('mtn', {
       colorize: true
     },
 
-    papertrail: {}
+    papertrail: {
+      port: '',
+      host: ''
+    }
   },
 
   newrelic: {
