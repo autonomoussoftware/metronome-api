@@ -1,5 +1,8 @@
 const config = require('./config')
-require('newrelic')
+
+if (config.newrelic.licenseKey) {
+  require('newrelic')
+}
 
 const logger = require('./logger')
 const MtnApi = require('./lib')

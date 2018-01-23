@@ -30,7 +30,8 @@ const config = milieu('mtn', {
 
     papertrail: {
       port: '',
-      host: ''
+      host: '',
+      inlineMeta: true
     }
   },
 
