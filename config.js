@@ -44,8 +44,8 @@ const config = milieu('mtn', {
     enabled: true,
     ipcPath: `${process.env['HOME']}/Library/Ethereum/geth.ipc`,
     webSocketUrl: 'ws://parity.bloqrock.net:8546',
-    tokenAddress: '0x02d0f0275244938bac719caa2621da17c503e347',
-    auctionAddress: '0xf657ced37343dbc441977678edae66fe0fdac5a1',
+    tokenAddress: '0xcd68235a0fa4c0d308041db793120f6bb8c944b3',
+    auctionAddress: '0xbfcad8234b7044dd114d75aa547c646bdbf3959b',
     exportStartBlock: 0,
     tokenDecimals: 18
   }
