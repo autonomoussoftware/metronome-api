@@ -48,7 +48,7 @@
     "pretty-ms": "^3.0.1",
     "promise-all-props": "^1.0.1",
     "socket.io": "^2.0.4",
-    "web3": "git@github.com:bloq/web3.js.git#int",
+    "web3-bloq": "git@github.com:bloq/web3.js.git#int2",
     "winston": "^2.4.0",
     "winston-child-logger": "0.0.1",
     "winston-papertrail": "^1.0.5",
