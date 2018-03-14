@@ -17,7 +17,9 @@ function getConfig (req, res, next) {
   req.logger.verbose('Responding to config request')
   req.logger.verbose('Sending config to client')
 
-  res.send(req.config.eth)
+  const { tokenAddress, auctionAddress } = req.config.eth
+
+  res.send({ tokenAddress, auctionAddress })
 }
 
 function getStatus (req, res, next) {
