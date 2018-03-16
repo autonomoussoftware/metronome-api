@@ -29,9 +29,14 @@ const config = milieu('mtn', {
     },
 
     papertrail: {
-      port: '',
+      colorize: true,
+      flushOnClose: true,
+      handleExceptions: true,
       host: '',
-      inlineMeta: true
+      inlineMetadata: true,
+      level: 'info',
+      port: '',
+      program: 'metronome-api'
     }
   },
 

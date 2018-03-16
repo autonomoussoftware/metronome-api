@@ -7,4 +7,6 @@ if (config.newrelic.licenseKey) {
 const logger = require('./logger')
 const MtnApi = require('./lib')
 
+logger.info('API is starting', config)
+
 module.exports = new MtnApi(config, logger)
