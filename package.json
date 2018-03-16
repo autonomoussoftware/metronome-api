@@ -31,7 +31,9 @@
   },
   "homepage": "https://github.com/MetronomeToken/metronome-api#readme",
   "dependencies": {
+    "@ianaya89/web3": "^1.0.3",
     "async": "^2.6.0",
+    "before-exit": "1.0.0",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "erc20js": "git@github.com:bloq/erc20js.git",
@@ -48,7 +50,6 @@
     "pretty-ms": "^3.0.1",
     "promise-all-props": "^1.0.1",
     "socket.io": "^2.0.4",
-    "@ianaya89/web3": "^1.0.3",
     "winston": "^2.4.0",
     "winston-child-logger": "0.0.1",
     "winston-papertrail": "^1.0.5",
