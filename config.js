@@ -33,7 +33,7 @@ const config = milieu('mtn', {
       flushOnClose: true,
       handleExceptions: true,
       host: '',
-      inlineMetadata: true,
+      inlineMeta: true,
       level: 'info',
       port: '',
       program: 'metronome-api'
