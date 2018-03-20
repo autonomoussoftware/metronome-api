@@ -7,6 +7,13 @@ router.get('/:address(0x?[0-9a-fA-f]{40})', findAccountByAddress)
 function queryAccounts (req, res, next) {
   req.logger.info(`Querying accounts: ${JSON.stringify(req.query)}`)
 
+  const addressesToExclude = [
+    req.config.eth.minterAddress
+  ]
+
+  req.query || (req.query = {})
+  req.query._id = { $nin: addressesToExclude }
+
   req.model('Account').countAndFind(req.query)
     .skip(req.skip)
     .limit(req.limit)
