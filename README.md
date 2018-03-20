@@ -12,6 +12,7 @@
 1. [Prod Setup](#Prod-Setup)
 1. [REST API](#REST-API)
 1. [WS Events](#WS-Events)
+1. [License](#License)
 
 ## Requirements
 
@@ -340,6 +341,11 @@ This event is emitted any time a API exporter updates an account's balance. Atta
 import io from 'socket.io-client'
 const socket = io('ws://api.met.bloqrock.net') // API URL
 socket.on('BALANCE_UPDATED', account => console.log(account))
+```
+---
+
+## LICENSE
+[MIT License](https://github.com/MetronomeToken/metronome-api/blob/develop/LICENSE).
 
 ---
 [![js-standard-style](https://cdn.rawgit.com/standard/standard/master/badge.svg)](http://standardjs.com)
