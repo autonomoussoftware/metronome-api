@@ -1,6 +1,6 @@
 # metronome-api
 
-�Metronome Token REST API
+🖲 Metronome Token REST API
 
 [![Build Status](https://travis-ci.com/MetronomeToken/metronome-api.svg?token=zFtwnjoHbEAEPUQyswR1&branch=master)](https://travis-ci.com/MetronomeToken/metronome-desktop-wallet)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
