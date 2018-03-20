@@ -168,7 +168,7 @@ I.E. `GET /event/552776_0_3`
 }
 ```
 
-### GET `GET /account`
+### `GET /account`
 
 Will return a JSON object that contains an array with all the accounts stored by the API exporter. Any time an address appears in a new transaction, the exporter updates the MET balance corresponding to that address and stores the value in MongoDB. This endpoint will also return the total amount of accounts.
 
@@ -192,7 +192,7 @@ Will return a JSON object that contains an array with all the accounts stored by
 
 > The account's `_id` is the address and the `balance` is the amount of MET owned by that account. The `balance` is always shown in `wei`.
 
-### GET `GET /account/:address`
+### `GET /account/:address`
 Will return a JSON object with the account that matchs the given address parameter.
 
 I.E. `GET /account/0x0EE6101fE14E198Fc0f617B56A85A3Ae5EaAB245`
