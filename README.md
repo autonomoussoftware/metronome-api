@@ -205,6 +205,125 @@ I.E. `GET /account/0x0EE6101fE14E198Fc0f617B56A85A3Ae5EaAB245`
 },
 ```
 
+## WS Events
+
+The API is integrated with [socket.io]() to dispatch different kind of web socket events and be able to handle information by clients in real time. Using the [socket.io client]() you must be able to establish a connection with the API and start listening for new events.
+
+```js
+import io from 'socket.io-client'
+const socket = io('ws://api.met.bloqrock.net') // API URL
+```
+
+### `AUCTION_STATUS_TASK`
+This event is emitted any time the status of MET auction changes. Attaching to this event you can get all needed information of Initial or Daily Auctions through a JSON object.
+
+```json
+{
+  "currentAuction": "10",
+  "currentPrice": "3300000000000",
+  "genesisTime": 1520035200,
+  "lastPurchasePrice": "3300000000000",
+  "lastPurchaseTime": 1521508680,
+  "nextAuctionStartTime": 1521590400,
+  "tokenCirculation": "10028800000000000000000000",
+  "tokenRemaining": "0",
+  "tokenSold": "10028800000000000000000000"
+}
+```
+
+#### Client Implementation
+```js
+import io from 'socket.io-client'
+const socket = io('ws://api.met.bloqrock.net') // API URL
+socket.on('AUCTION_STATUS_TASK', auctionStatus => console.log(auctionStatus))
+```
+
+
+### `NEW_EVENT`
+
+This event is emitted any time the API exporter process a new ETH event. Attaching to this event you can get all new ETH events in real time without making HTTP request to REST API.
+
+```json
+{
+  "_id": "552776_0_3",
+  "metaData": {
+    "address": "0xa25A2cE3547e77397b7EAc4eb464E2eDCFaAE511",
+    "blockHash": "0x198cf44b2175f0927a19c14c81ff4d0b680b1689cb2688253cd3b6f43219719e",
+    "blockNumber": 552776,
+    "logIndex": 3,
+    "transactionHash": "0x1c31d0459ff37a518acaafb73b75d9fc1db36745c7c3ce8b6025d1ea3a564076",
+    "transactionIndex": 0,
+    "returnValues": { },
+    "event": "Approval",
+    "topics": [ ],
+    "timestamp": 1520534045
+  }
+}
+```
+> The output is the same you get when you request events using REST API events endpoints.
+
+#### Client Implementation
+```js
+import io from 'socket.io-client'
+const socket = io('ws://api.met.bloqrock.net') // API URL
+socket.on('NEW_EVENT', event => console.log(event))
+```
+
+### `LATEST_BLOCK`
+
+This event is emitted any time a new block is mined. Attaching to this event you can get the entire new block information.
+
+```json
+{
+  "author": "0x0a194f4b9f5f904ec3b4548d63bee1c55b1d61d6",
+  "difficulty": "2628345",
+  "extraData": "0xd583010701846765746885676f312e39856c696e7578",
+  "gasLimit": 4712388,
+  "gasUsed": 0,
+  "hash": "0x26475158371994b10caeb098f0efc8c71c18e02f441a43fa9262ed26699ed85b",
+  "logsBloom": "",
+  "miner": "0x0a194f4b9F5F904EC3b4548d63Bee1C55b1D61d6",
+  "mixHash": "0xc58740831a5041fa618ce10d8e072785de37750897a1539835a87d2eea0c4905",
+  "nonce": "0x079ad3803a89f70e",
+  "number": 623303,
+  "parentHash": "0x0e70a313ee49736bdb0f72000d9d0850cb781ea185f56c05dc94f5bdbd8c9c51",
+  "receiptsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+  "sealFields": [ ],
+  "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+  "size": 536,
+  "stateRoot": "0xaa584ee7a8d30599cb904a16562424bb0c233fdf2a6a1d3ef8c6eccea7349618",
+  "timestamp": 1521584303,
+  "totalDifficulty": "431363800748",
+  "transactions": [ ],
+  "transactionsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+  "uncles": [ ],
+}
+```
+
+#### Client Implementation
+```js
+import io from 'socket.io-client'
+const socket = io('ws://api.met.bloqrock.net') // API URL
+socket.on('LATEST_BLOCK', block => console.log(block))
+```
+
+
+### `BALANCE_UPDATED`
+
+This event is emitted any time a API exporter updates an account's balance. Attaching to this event you can get balances updates in real time
+
+```json
+{
+  "_id": "0x0EE6101fE14E198Fc0f617B56A85A3Ae5EaAB245",
+  "balance": "999999500000000000000000"
+}
+```
+
+#### Client Implementation
+```js
+import io from 'socket.io-client'
+const socket = io('ws://api.met.bloqrock.net') // API URL
+socket.on('BALANCE_UPDATED', account => console.log(account))
 
 ---
 [![js-standard-style](https://cdn.rawgit.com/standard/standard/master/badge.svg)](http://standardjs.com)
