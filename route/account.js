@@ -2,7 +2,7 @@ const Router = require('express').Router
 const router = new Router()
 
 router.get('/', queryAccounts)
-router.get('/:address', findAccountByAddress)
+router.get('/:address(0x?[0-9a-fA-f]{40})', findAccountByAddress)
 
 function queryAccounts (req, res, next) {
   req.logger.info(`Querying accounts: ${JSON.stringify(req.query)}`)
