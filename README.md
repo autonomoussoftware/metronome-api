@@ -6,13 +6,13 @@
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Index
-1. [Requirements](#Requirements)
-1. [Configuration](#Configuration)
-1. [Dev Setup](#Dev-Setup)
-1. [Prod Setup](#Prod-Setup)
-1. [REST API](#REST-API)
-1. [WS Events](#WS-Events)
-1. [License](#License)
+1. [Requirements](#requirements)
+1. [Configuration](#configuration)
+1. [Dev Setup](#dev-Setup)
+1. [Prod Setup](#prod-setup)
+1. [REST API](#rest-api)
+1. [WS Events](#ws-events)
+1. [License](#license)
 
 ## Requirements
 
