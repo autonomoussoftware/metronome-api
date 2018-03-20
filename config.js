@@ -3,7 +3,7 @@ const milieu = require('milieu')
 const config = milieu('mtn', {
   server: {
     maxResultsLimit: 1000,
-    port: process.env.PORT || 3000
+    port: process.env.PORT || 3002
   },
 
   cors: {
