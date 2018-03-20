@@ -5,6 +5,14 @@
 [![Build Status](https://travis-ci.com/MetronomeToken/metronome-api.svg?token=zFtwnjoHbEAEPUQyswR1&branch=master)](https://travis-ci.com/MetronomeToken/metronome-desktop-wallet)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+## Index
+1. [Requirements](#Requirements)
+1. [Configuration](#Configuration)
+1. [Dev Setup](#Dev-Setup)
+1. [Prod Setup](#Prod-Setup)
+1. [REST API](#REST-API)
+1. [WS Events](#WS-Events)
+
 ## Requirements
 
 - Node.js v8
@@ -214,7 +222,7 @@ ___
 
 ## WS Events
 
-The API is integrated with [socket.io]() to dispatch different kind of web socket events and be able to handle information by clients in real time. Using the [socket.io client]() you must be able to establish a connection with the API and start listening for new events.
+The API is integrated with [socket.io](https://socket.io/) to dispatch different kind of web socket events and be able to handle information by clients in real time. Using the [socket.io client](https://socket.io/docs/client-api/) you must be able to establish a connection with the API and start listening for new events.
 
 ```js
 import io from 'socket.io-client'
@@ -237,7 +245,6 @@ This event is emitted any time the status of MET auction changes. Attaching to t
   "tokenSold": "10028800000000000000000000"
 }
 ```
-___
 
 #### Client Implementation
 ```js
