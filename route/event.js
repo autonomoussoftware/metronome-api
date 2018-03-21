@@ -39,7 +39,9 @@ function findEventsByAccount (req, res, next) {
 
   req.query = { $or: [
     { 'metaData.returnValues._from': req.params.address },
-    { 'metaData.returnValues._to': req.params.address }
+    { 'metaData.returnValues._to': req.params.address },
+    { 'metaData.returnValues._owner': req.params.address },
+    { 'metaData.returnValues._spender': req.params.address }
   ]}
 
   return queryEvents(req, res, next)
