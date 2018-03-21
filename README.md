@@ -11,6 +11,7 @@
 1. [Dev Setup](#dev-Setup)
 1. [Prod Setup](#prod-setup)
 1. [REST API](#rest-api)
+1. [Query, Pagination & Sorting](#query-pagination-&-sorting)
 1. [WS Events](#ws-events)
 1. [License](#license)
 
