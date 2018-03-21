@@ -221,6 +221,49 @@ I.E. `GET /account/0x0EE6101fE14E198Fc0f617B56A85A3Ae5EaAB245`
 ```
 ___
 
+## Query, Pagination & Sorting
+
+Endpoints that retrieved multiple results (like `GET /event` and `GET /account`) allow MongoDB queries, pagination and sorting. You can even combine this features in a single query.
+
+### Query
+You can set some MongoDB allowed queries using query string format to filter and get specific results. Here some examples:
+
+- Get all events with address equals to 0x825A2cE3547e77397b7EAc4eb464E2eDCFaAE514
+
+    `GET /event?metaData.address=0x825A2cE3547e77397b7EAc4eb464E2eDCFaAE514`
+
+- Get all accounts with balance equals to 0
+    `GET /account?balance=0`
+
+### Pagination
+You can use the keys `$limit` and `$skip` in the query string to paginate the results. Internally the API uses MongoDB `limit()` and `$skip()` methods.
+
+- Get first set of 5 events
+
+    `GET /event?$limit=5`
+
+- Get second set of 5 events
+
+    `GET /event?$limit=5$skip=0`
+
+> The defaults values are `1000` for `$limit` and `0` for `$skip`
+
+
+### Sorting
+You can use the `$sort` key to set the desired order to retrieve the results. Internally the API uses MongoDB `sort()` method.
+
+- Get accounts sort by balance
+   `GET /account?$sort=balance`
+   `GET /account?$sort=-balance`
+
+- Get events sort by timestamp
+    `GET /event?$sort=metaData.timestamp`
+    `GET /event?$sort=-metaData.timestamp`
+
+> Use the prefix `-` to set descending order.
+
+---
+
 ## WS Events
 
 The API is integrated with [socket.io](https://socket.io/) to dispatch different kind of web socket events and be able to handle information by clients in real time. Using the [socket.io client](https://socket.io/docs/client-api/) you must be able to establish a connection with the API and start listening for new events.
