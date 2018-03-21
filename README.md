@@ -234,6 +234,7 @@ You can set some MongoDB allowed queries using query string format to filter and
     `GET /event?metaData.address=0x825A2cE3547e77397b7EAc4eb464E2eDCFaAE514`
 
 - Get all accounts with balance equals to 0
+
     `GET /account?balance=0`
 
 ### Pagination
@@ -254,11 +255,15 @@ You can use the keys `$limit` and `$skip` in the query string to paginate the re
 You can use the `$sort` key to set the desired order to retrieve the results. Internally the API uses MongoDB `sort()` method.
 
 - Get accounts sort by balance
+
    `GET /account?$sort=balance`
+
    `GET /account?$sort=-balance`
 
 - Get events sort by timestamp
+
     `GET /event?$sort=metaData.timestamp`
+
     `GET /event?$sort=-metaData.timestamp`
 
 > Use the prefix `-` to set descending order.
