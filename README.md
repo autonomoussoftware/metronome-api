@@ -1,4 +1,6 @@
-# metronome-api
+<h1 align="center">
+  <img src="./logo.png" alt="Metronome API" width="50%">
+</h1>
 
 🖲 Metronome Token REST API
 
