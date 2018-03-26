@@ -25,10 +25,10 @@
 
 The following environment variables are needed for the API to work:
 
-- `MTN__ETH__AUCTION_ADDRESS` is the Auctions Contract Address. I.e. `0xfd9d84C87E80aAEDBE7afA50ad0D80B0b59Fe2b9`.
-- `MTN__ETH__TOKEN_ADDRESS` is the MTNToken Contract Address I.e. `0xfd9d84C87E80aAEDBE7afA50ad0D80B0b59Fe2b9`.
-- `MTN__ETH__WEB_SOCKET_URL` is the websocket URL of the Ethereum node. I.e. `ws://node.metronome.io:8546`.
-- `MTN__MONGO__URL` is the mongodb URL. I.e. `mongodb://localhost/mtn`.
+- `MTN__ETH__AUCTION_ADDRESS` is the Auctions Contract Address. I.E. `0xfd9d84C87E80aAEDBE7afA50ad0D80B0b59Fe2b9`.
+- `MTN__ETH__TOKEN_ADDRESS` is the MTNToken Contract Address I.E. `0xfd9d84C87E80aAEDBE7afA50ad0D80B0b59Fe2b9`.
+- `MTN__ETH__WEB_SOCKET_URL` is the websocket URL of the Ethereum node. I.E. `ws://node.metronome.io:8546`.
+- `MTN__MONGO__URL` is the mongodb URL. I.E. `mongodb://localhost/mtn`.
 
 > You can use `$ npm run config` to check the values that the API will use when you start it.
 
@@ -224,10 +224,10 @@ ___
 
 ## Query, Pagination & Sorting
 
-Endpoints that retrieved multiple results (like `GET /event` and `GET /account`) allow MongoDB queries, pagination and sorting. You can even combine this features in a single query.
+Endpoints that retrieve multiple results, (like `GET /event` and `GET /account`) allow MongoDB queries, pagination and sorting. You can even combine this features in a single query.
 
 ### Query
-You can set some MongoDB allowed queries using query string format to filter and get specific results. Here some examples:
+You can set some MongoDB allowed queries using URL query string format to filter and get specific results. Here some examples:
 
 - Get all events with address equals to 0x825A2cE3547e77397b7EAc4eb464E2eDCFaAE514
 
@@ -238,7 +238,7 @@ You can set some MongoDB allowed queries using query string format to filter and
     `GET /account?balance=0`
 
 ### Pagination
-You can use the keys `$limit` and `$skip` in the query string to paginate the results. Internally the API uses MongoDB `limit()` and `$skip()` methods.
+You can use the keys `$limit` and `$skip` as query string values to paginate the results. Internally the API uses MongoDB `limit()` and `$skip()` methods.
 
 - Get first set of 5 events
 
@@ -252,7 +252,7 @@ You can use the keys `$limit` and `$skip` in the query string to paginate the re
 
 
 ### Sorting
-You can use the `$sort` key to set the desired order to retrieve the results. Internally the API uses MongoDB `sort()` method.
+You can use the `$sort` key as query string vlaue to set the desired order to retrieve the results. Internally the API uses MongoDB `sort()` method.
 
 - Get accounts sort by balance
 
