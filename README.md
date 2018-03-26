@@ -25,10 +25,21 @@
 
 The following environment variables are needed for the API to work:
 
-- `MTN__ETH__AUCTION_ADDRESS` is the Auctions Contract Address. I.E. `0xfd9d84C87E80aAEDBE7afA50ad0D80B0b59Fe2b9`.
-- `MTN__ETH__TOKEN_ADDRESS` is the MTNToken Contract Address I.E. `0xfd9d84C87E80aAEDBE7afA50ad0D80B0b59Fe2b9`.
-- `MTN__ETH__WEB_SOCKET_URL` is the websocket URL of the Ethereum node. I.E. `ws://node.metronome.io:8546`.
-- `MTN__MONGO__URL` is the mongodb URL. I.E. `mongodb://localhost/mtn`.
+- `MTN__ETH__AUCTION_ADDRESS`: The Auctions Contract Address.
+
+  I.E. `0xfd9d84C87E80aAEDBE7afA50ad0D80B0b59Fe2b9`.
+
+- `MTN__ETH__TOKEN_ADDRESS`: The MTNToken Contract Address
+
+  I.E. `0xfd9d84C87E80aAEDBE7afA50ad0D80B0b59Fe2b9`.
+
+- `MTN__ETH__WEB_SOCKET_URL`: The WebSocket URL of the Ethereum node.
+
+  I.E. `ws://node.metronome.io:8546`.
+
+- `MTN__MONGO__URL`: The MongoDB URL.
+
+  I.E. `mongodb://localhost/mtn`.
 
 > You can use `$ npm run config` to check the values that the API will use when you start it.
 
