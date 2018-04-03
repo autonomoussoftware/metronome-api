@@ -44,8 +44,6 @@ The following environment variables are needed for the API to work:
 
   I.E. `mongodb://localhost/mtn`.
 
-* `NEW_RELIC_API_KEY`: New relic Api Key
-
 ### Limit Rate
 
 * `RATE_LIMIT_WIN_MS`: on milliseconds - how long to keep records of requests in memory. Defaults to 60000 (1 minute).
