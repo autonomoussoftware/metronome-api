@@ -20,7 +20,7 @@
 
   "logger": {
     "sentry": {
-      "dsn": "SENTRY_DNS"
+      "dsn": "SENTRY_DSN"
     },
 
     "console": {
