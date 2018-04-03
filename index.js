@@ -4,7 +4,7 @@ const config = require('config')
 const logger = require('./logger')
 const MtnApi = require('./lib')
 
-if (config.newRelic.apiKey) {
+if (config.newrelic.apikey) {
   require('newrelic')
 }
 

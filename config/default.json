@@ -4,8 +4,8 @@
     "port": 3002
   },
 
-  "newRelic": {
-    "apiKey": "NEW_RELIC_API_KEY",
+  "newrelic": {
+    "apikey": "NEW_RELIC_API_KEY",
     "level": "info"
   },
 
