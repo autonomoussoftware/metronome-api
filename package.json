@@ -38,6 +38,7 @@
     "cors": "^2.8.4",
     "erc20js": "git@github.com:bloq/erc20js.git",
     "express": "^4.16.2",
+    "express-rate-limit": "2.11.0",
     "express-rest-api": "^0.1.0",
     "figlet": "^1.2.0",
     "metronomejs": "git@github.com:MetronomeToken/metronomejs.git#beta-3",
