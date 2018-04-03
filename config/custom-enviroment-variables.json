@@ -6,7 +6,7 @@
 
   "newRelic": {
     "apiKey": "NEW_RELIC_API_KEY",
-    "level": "info"
+    "level": "NEW_RELIC_LOG_LEVEL"
   },
 
   "cors": {
@@ -14,17 +14,17 @@
   },
 
   "mongo": {
-    "url": "mongodb://localhost/mtn",
-    "testUrl": "mongodb://localhost/mtn-test"
+    "url": "MONGO_URL",
+    "testUrl": "MONGO_TEST_URL"
   },
 
   "logger": {
     "sentry": {
-      "dsn": ""
+      "dsn": "SENTRY_DNS"
     },
 
     "console": {
-      "level": "debug",
+      "level": "LOG_LEVEL",
       "timestamp": true,
       "handleExceptions": true,
       "humanReadableUnhandledException": true,
@@ -35,21 +35,21 @@
       "colorize": true,
       "flushOnClose": true,
       "handleExceptions": true,
-      "host": "",
+      "host": "PAPERTRAIL_HOST",
       "inlineMeta": true,
-      "level": "info",
-      "port": "",
+      "level": "PAPERTRAIL_LOG_LEVEL",
+      "port": "PAPERTRAIL_PORT",
       "program": "metronome-api"
     }
   },
 
   "eth": {
     "enabled": true,
-    "ipcPath": "/Library/Ethereum/geth.ipc",
-    "webSocketUrl": "ws://eth.bloqrock.net:8546",
-    "tokenAddress": "0x825a2ce3547e77397b7eac4eb464e2edcfaae514",
-    "auctionAddress": "0x9aeb1035b327f4f81198090f4183f21ca6fcb040",
-    "minterAddress": "0x0000000000000000000000000000000000000000",
-    "exportStartBlock": 0
+    "ipcPath": "ENODE_IPC_PATH",
+    "webSocketUrl": "ENODE_WS_API_URL",
+    "tokenAddress": "MET_TOKEN_ADDR",
+    "auctionAddress": "MET_AUCT_ADDR",
+    "minterAddress": "MINTER_ADDR",
+    "exportStartBlock": "EXPORT_START_BLOCK"
   }
 }
