@@ -1,4 +1,4 @@
-const config = require('../config')
+const config = require('config')
 
 config.logger = {}
 config.server.port = 9000
