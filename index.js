@@ -1,15 +1,14 @@
 const beforeExit = require('before-exit')
 
-const config = require('./config')
+require('newrelic')
+
+const config = require('config')
 const logger = require('./logger')
 const MtnApi = require('./lib')
 
-if (config.newrelic.licenseKey) {
-  require('newrelic')
-}
-
 const loggeableConfig = Object.assign({}, config)
 delete loggeableConfig.__$
+
 logger.info('API is starting', loggeableConfig)
 
 beforeExit.do(function (signal) {
