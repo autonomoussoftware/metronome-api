@@ -5,7 +5,7 @@
   },
 
   "newrelic": {
-    "apikey": "NEW_RELIC_API_KEY",
+    "apikey": "",
     "level": "info"
   },
 
