@@ -12,18 +12,18 @@ exports.config = {
   /**
    * Array of application names.
    */
-  app_name: ['Metronome-api'],
+  app_name: ['metronome-api'],
   /**
    * Your New Relic license key.
    */
-  license_key: config.newrelic.apikey,
+  license_key: config.newrelic.licenseKey,
   logging: {
     /**
      * Level at which to log. 'trace' is most useful to New Relic when diagnosing
      * issues with the agent, 'info' and higher will impose the least overhead on
      * production applications.
      */
-    level: config.newrelic.level
+    level: config.newrelic.loggingLevel
   },
   /**
    * When true, all request headers except for those listed in attributes.exclude
