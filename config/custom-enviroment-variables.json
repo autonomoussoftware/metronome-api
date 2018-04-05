@@ -10,7 +10,7 @@
   },
 
   "cors": {
-    "origin": "*"
+    "origin": "CORS_ORIGIN"
   },
 
   "mongo": {
@@ -24,19 +24,11 @@
     },
 
     "console": {
-      "level": "LOGGER_CONSOLE_LEVEL",
-      "timestamp": true,
-      "handleExceptions": true,
-      "humanReadableUnhandledException": true,
-      "colorize": true
+      "level": "LOGGER_CONSOLE_LEVEL"
     },
 
     "papertrail": {
-      "colorize": true,
-      "flushOnClose": true,
-      "handleExceptions": true,
       "host": "LOGGER_PAPERTRAIL_HOST",
-      "inlineMeta": true,
       "level": "LOGGER_PAPERTRAIL_LEVEL",
       "port": "LOGGER_PAPERTRAIL_PORT",
       "program": "LOGGER_PAPERTRAIL_PROGRAM"
@@ -44,7 +36,6 @@
   },
 
   "eth": {
-    "enabled": true,
     "ipcPath": "ETH_IPC_PATH",
     "webSocketUrl": "ETH_WS_API_URL",
     "tokenAddress": "ETH_TOKEN_ADDR",
