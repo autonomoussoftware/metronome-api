@@ -1,5 +1,5 @@
 const config = require('./config')
-config.server.port = 9002
+config.port = 9002
 
 let request = require('request')
 

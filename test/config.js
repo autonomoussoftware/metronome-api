@@ -1,7 +1,7 @@
 const config = require('config')
 
 config.logger = {}
-config.server.port = 9000
+config.port = 9000
 config.eth.enabled = false
 config.mongo.url = config.mongo.testUrl
 

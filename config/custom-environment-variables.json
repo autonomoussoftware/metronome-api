@@ -1,7 +1,8 @@
 {
+  "port": "PORT",
+
   "server": {
-    "maxResultsLimit": "SERVER_MAX_RESULTS_LIMIT",
-    "port": "SERVER_PORT"
+    "maxResultsLimit": "SERVER_MAX_RESULTS_LIMIT"
   },
 
   "newrelic": {
