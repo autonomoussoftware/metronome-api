@@ -8,11 +8,6 @@
     "origin": "*"
   },
 
-  "mongo": {
-    "url": "mongodb://localhost/mtn",
-    "testUrl": "mongodb://localhost/mtn-test"
-  },
-
   "logger": {
     "console": {
       "level": "debug",
@@ -20,6 +15,12 @@
       "handleExceptions": true,
       "humanReadableUnhandledException": true,
       "colorize": true
+    },
+    "papertrail": {
+      "colorize": true,
+      "flushOnClose": true,
+      "handleExceptions": true,
+      "inlineMeta": true
     }
   },
 
