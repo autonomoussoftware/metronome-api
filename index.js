@@ -1,12 +1,13 @@
 const beforeExit = require('before-exit')
 
 const config = require('config')
-const logger = require('./logger')
-const MtnApi = require('./lib')
 
 if (config.newrelic && config.newrelic.licenseKey) {
   require('newrelic')
 }
+
+const logger = require('./logger')
+const MtnApi = require('./lib')
 
 const loggeableConfig = Object.assign({}, config)
 delete loggeableConfig.__$
