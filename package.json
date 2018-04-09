@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "start": "./bin/mtn-api",
-    "config": "./bin/mtn-config --explain-config true",
     "dev": "nodemon ./bin/mtn-api",
     "debug": "node --inspect ./bin/mtn-api",
     "test": "jest --forceExit",
