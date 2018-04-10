@@ -44,16 +44,6 @@ The following environment variables are needed for the API to work:
 
   I.E. `mongodb://localhost/mtn`.
 
-### Limit Rate
-
-* `RATE_LIMIT_WIN_MS`: on milliseconds - how long to keep records of requests in memory. Defaults to 60000 (1 minute).
-
-* `RATE_LIMIT_MAX_REQ`: max number of connections during windowMs before starting to delay responses. Defaults to 1. Set to 0 to disable delaying.
-
-* `RATE_LIMIT_DELAY_MS`: milliseconds - how long to delay the response, multiplied by (number of recent hits - delayAfter). Defaults to 1000 (1 second). Set to 0 to disable delaying.
-
-See more data on https://github.com/nfriedly/express-rate-limit
-
 ### List Config
 
 > You can use `$ npm run config` to check the values that the API will use when you start it.
