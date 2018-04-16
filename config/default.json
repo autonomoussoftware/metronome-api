@@ -11,8 +11,7 @@
   },
 
   "mongo": {
-    "url": "mongodb://localhost/mtn",
-    "testUrl": "mongodb://localhost/mtn-test"
+    "url": "mongodb://localhost/mtn"
   },
 
   "logger": {
