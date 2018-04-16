@@ -15,8 +15,7 @@
   },
 
   "mongo": {
-    "url": "MONGO_URL",
-    "testUrl": "MONGO_TEST_URL"
+    "url": "MONGO_URL"
   },
 
   "logger": {
