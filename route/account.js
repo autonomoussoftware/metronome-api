@@ -2,10 +2,11 @@ const Router = require('express').Router
 const router = new Router()
 
 router.get('/', queryAccounts)
-router.get('/:address(0x?[0-9a-fA-f]{40})', findAccountByAddress)
+router.get('/:address(0x[0-9a-fA-F]{40})', findAccountByAddress)
 
 function queryAccounts (req, res, next) {
-  req.logger.info(`Querying accounts: ${JSON.stringify(req.query).substring(500)}`)
+  const logQuery = JSON.stringify(req.query).substring(req.config.queryLimit)
+  req.logger.info(`Querying accounts: ${logQuery}`)
 
   const addressesToExclude = [
     req.config.eth.minterAddress
