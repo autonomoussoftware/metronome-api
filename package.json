@@ -13,7 +13,7 @@
     "start": "./bin/met-api",
     "test": "jest --forceExit",
     "test:dev": "jest --watch",
-    "prepush": "npm run check && npm test",
+    "prepush": "npm test",
     "precommit": "npm run lint"
   },
   "repository": {
