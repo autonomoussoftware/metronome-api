@@ -3,7 +3,6 @@ const Router = require('express').Router
 const router = new Router()
 
 router.get('/', getRoot)
-router.get('/config', getConfig)
 router.get('/status', getStatus)
 
 function getRoot (req, res) {
@@ -11,15 +10,6 @@ function getRoot (req, res) {
   req.logger.verbose('Sending response to client')
 
   res.send({ name: pkg.name, version: pkg.version })
-}
-
-function getConfig (req, res, next) {
-  req.logger.verbose('Responding to config request')
-  req.logger.verbose('Sending config to client')
-
-  const { tokenAddress, auctionAddress } = req.config.eth
-
-  res.send({ tokenAddress, auctionAddress })
 }
 
 function getStatus (req, res, next) {

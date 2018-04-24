@@ -38,8 +38,6 @@
   "eth": {
     "ipcPath": "ETH_IPC_PATH",
     "webSocketUrl": "ETH_WS_API_URL",
-    "tokenAddress": "ETH_TOKEN_ADDR",
-    "auctionAddress": "ETH_AUCT_ADDR",
     "minterAddress": "ETH_MINTER_ADDR",
     "exportStartBlock": "ETH_EXPORT_START_BLOCK"
   }
