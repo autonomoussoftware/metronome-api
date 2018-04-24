@@ -4,13 +4,17 @@
   "description": "🖲 Metronome Token REST API",
   "main": "index.js",
   "scripts": {
-    "start": "./bin/met-api",
+    "check": "dependency-check . && dependency-check . --unused --no-dev",
+    "check:outdated": "npm-check -i eslint-config* -i husky",
     "dev": "nodemon ./bin/met-api",
     "debug": "node --inspect ./bin/met-api",
+    "lint": "eslint . --ext .js",
+    "lint:fix": "eslint . --fix .js",
+    "start": "./bin/met-api",
     "test": "jest --forceExit",
     "test:dev": "jest --watch",
-    "lint": "eslint . --ext .js",
-    "lint:fix": "eslint . --fix .js"
+    "prepush": "npm run check && npm test",
+    "precommit": "npm run lint"
   },
   "repository": {
     "type": "git",
@@ -54,14 +58,17 @@
     "winston-sentry-transport": "^1.0.0"
   },
   "devDependencies": {
+    "dependency-check": "3.1.0",
     "eslint": "^4.11.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
+    "husky": "0.14.3",
     "jest": "^21.2.1",
     "nodemon": "^1.12.1",
+    "npm-check": "5.7.0",
     "sinon": "^4.1.3"
   },
   "engines": {

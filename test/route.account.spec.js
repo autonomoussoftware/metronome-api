@@ -84,7 +84,6 @@ describe('Account Routes', () => {
   })
 
   describe('Get Account by Id Route - GET /account/:id', () => {
-
     it('responds with a single account matching the given id', done => {
       request.get(`/account/${newAccount1._id}`, { json: true }, (err, clientRes) => {
         if (err) { return done(err) }

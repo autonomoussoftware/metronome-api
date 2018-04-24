@@ -84,7 +84,6 @@ describe('Event Routes', () => {
   })
 
   describe('Get Event by Id Route - GET /event/:id', () => {
-
     it('responds with a single event matching the given id', done => {
       request.get(`/event/${newEvent1._id}`, { json: true }, (err, clientRes) => {
         if (err) { return done(err) }

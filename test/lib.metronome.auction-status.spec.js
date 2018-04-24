@@ -88,8 +88,7 @@ describe('AuctionStatus Object', function () {
           if (event === latestBlockEvent) {
             expect(data).toHaveProperty('number')
             expect(data).toHaveProperty('timestamp')
-          }
-          else if (event === auctionStatusEvent) {
+          } else if (event === auctionStatusEvent) {
             expect(data).toHaveProperty('lastPurchasePrice')
             expect(data).toHaveProperty('lastPurchaseTime')
             expect(data).toHaveProperty('nextAuctionStartTime')
