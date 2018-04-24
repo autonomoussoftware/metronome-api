@@ -7,7 +7,7 @@ if (config.newrelic && config.newrelic.licenseKey) {
 }
 
 const logger = require('./logger')
-const MtnApi = require('./lib')
+const MetApi = require('./lib')
 
 const loggeableConfig = Object.assign({}, config)
 delete loggeableConfig.__$
@@ -18,4 +18,4 @@ beforeExit.do(function (signal) {
   logger.error('Shutting down API on signal', signal)
 })
 
-module.exports = new MtnApi(config, logger)
+module.exports = new MetApi(config, logger)

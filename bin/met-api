@@ -1,0 +1,8 @@
+#! /usr/bin/env node
+require('../splash')
+
+const metApi = require('../')
+
+metApi.start()
+  .then(() => metApi.logger.info(`Listening for HTTP requests 🚀 🔥`))
+  .catch(err => { throw new Error(err) })

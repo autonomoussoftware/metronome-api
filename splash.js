@@ -9,7 +9,7 @@ try {
 }
 
 process.stdout.write('\n')
-process.stdout.write(`${figlet.textSync('mtn-api', { font: 'Ogre' })}\n`)
+process.stdout.write(`${figlet.textSync('met-api', { font: 'Ogre' })}\n`)
 process.stdout.write('\n')
 process.stdout.write(`version: ${pkg.version} revision: ${rev.revision}\n`)
 process.stdout.write('\n')

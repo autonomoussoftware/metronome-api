@@ -3,8 +3,8 @@ config.port = 9002
 
 let request = require('request')
 
-const mtnApi = require('../')
-const connection = mtnApi.database.mongoose.connection
+const metApi = require('../')
+const connection = metApi.database.mongoose.connection
 
 const newEvent1 = require('./fixture/new-event-1')
 const newEvent2 = require('./fixture/new-event-2')
@@ -16,7 +16,7 @@ const TOTAL_EVENTS = 3
 
 describe('Event Routes', () => {
   beforeAll(done => {
-    mtnApi.start()
+    metApi.start()
       .then(connection.collection('events').remove({}))
       .then(connection.collection('events').insertMany([newEvent1, newEvent2, newEvent3]))
       .then(done)
@@ -24,7 +24,7 @@ describe('Event Routes', () => {
 
   afterAll(() => {
     connection.collection('events').remove({})
-      .then(() => mtnApi.stop())
+      .then(() => metApi.stop())
   })
 
   describe('Query Events Route - GET /event', () => {

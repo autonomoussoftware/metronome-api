@@ -20,7 +20,7 @@ const metronomeMock = {
       currentPrice: () => ({ call: () => Promise.resolve() }),
       currentAuction: () => ({ call: () => Promise.resolve() }),
       genesisTime: () => ({ call: () => Promise.resolve() }),
-      globalMtnSupply: () => ({ call: () => Promise.resolve() }),
+      globalMetSupply: () => ({ call: () => Promise.resolve() }),
       lastPurchasePrice: () => ({ call: () => Promise.resolve() }),
       lastPurchaseTick: () => ({ call: () => Promise.resolve() }),
       mintable: () => ({ call: () => Promise.resolve() }),
@@ -28,7 +28,7 @@ const metronomeMock = {
     }
   },
 
-  mtntoken: {
+  metToken: {
     methods: {
       totalSupply: () => ({ call: () => Promise.resolve() })
     }

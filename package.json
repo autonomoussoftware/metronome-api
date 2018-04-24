@@ -4,9 +4,9 @@
   "description": "🖲 Metronome Token REST API",
   "main": "index.js",
   "scripts": {
-    "start": "./bin/mtn-api",
-    "dev": "nodemon ./bin/mtn-api",
-    "debug": "node --inspect ./bin/mtn-api",
+    "start": "./bin/met-api",
+    "dev": "nodemon ./bin/met-api",
+    "debug": "node --inspect ./bin/met-api",
     "test": "jest --forceExit",
     "test:dev": "jest --watch",
     "lint": "eslint . --ext .js",
@@ -17,7 +17,7 @@
     "url": "git+https://github.com/MetronomeToken/metronome-api.git"
   },
   "keywords": [
-    "mtn",
+    "met",
     "token",
     "metronome",
     "api",

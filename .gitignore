@@ -2,8 +2,8 @@ node_modules
 coverage
 *.log*
 .DS_Store
-.mtnrc
-.mtnrc.*
+.metrc
+.metrc.*
 .vscode
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

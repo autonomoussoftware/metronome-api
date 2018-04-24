@@ -3,8 +3,8 @@ config.port = 9000
 
 let request = require('request')
 
-const mtnApi = require('../')
-const connection = mtnApi.database.mongoose.connection
+const metApi = require('../')
+const connection = metApi.database.mongoose.connection
 
 const newAccount1 = require('./fixture/new-account-1')
 const newAccount2 = require('./fixture/new-account-2')
@@ -16,7 +16,7 @@ const TOTAL_ACCOUNTS = 3
 
 describe('Account Routes', () => {
   beforeAll(done => {
-    mtnApi.start()
+    metApi.start()
       .then(connection.collection('accounts').remove({}))
       .then(connection.collection('accounts').insertMany([newAccount1, newAccount2, newAccount3]))
       .then(done)
@@ -24,7 +24,7 @@ describe('Account Routes', () => {
 
   afterAll(() => {
     connection.collection('accounts').remove({})
-      .then(() => mtnApi.stop())
+      .then(() => metApi.stop())
   })
 
   describe('Query Accounts Route - GET /account', () => {
