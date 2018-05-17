@@ -32,6 +32,7 @@
 
   "eth": {
     "enabled": true,
+    "chain": "ropsten",
     "ipcPath": "/Library/Ethereum/geth.ipc",
     "webSocketUrl": "ws://localhost:8546",
     "minterAddress": "0x0000000000000000000000000000000000000000",
