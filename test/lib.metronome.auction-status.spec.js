@@ -106,7 +106,7 @@ describe('AuctionStatus Object', function () {
     }
 
     // eslint-disable-next-line no-new
-    new AuctionStatus(loggerMock, null, ethApiMock, socketMock)
+    new AuctionStatus({ logger: loggerMock, ethApi: ethApiMock, socket: socketMock })
     emitter.emit('newBlockHeaders', latestBlockMock)
   })
 
@@ -138,7 +138,7 @@ describe('AuctionStatus Object', function () {
     })
 
     // eslint-disable-next-line no-new
-    new AuctionStatus(loggerMock, null, ethApiMock, socketMock)
+    new AuctionStatus({ logger: loggerMock, ethApi: ethApiMock, socket: socketMock })
     ioEmitter.emit('connection', socketEmitter)
   })
 })
