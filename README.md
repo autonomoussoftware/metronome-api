@@ -5,7 +5,7 @@
 🖲 Metronome Token REST API
 
 [![Build Status](https://travis-ci.com/MetronomeToken/metronome-api.svg?token=zFtwnjoHbEAEPUQyswR1&branch=master)](https://travis-ci.com/MetronomeToken/metronome-desktop-wallet)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![Code Style](https://img.shields.io/badge/code%20style-bloq-0063a6.svg)](https://github.com/bloq/eslint-config-bloq)
 
 ## Index
 
@@ -20,9 +20,9 @@
 
 ## Requirements
 
-* Node.js v8
-* MongoDB v3
-* Ethereum node (i.e. Geth or Parity)
+* [Node.js](https://nodejs.org) v8
+* [MongoDB](https://mongodb.com/) v3
+* Ethereum node (i.e. [Geth](https://github.com/ethereum/go-ethereum) or [Parity](https://parity.io/))
 
 ## Configuration
 
