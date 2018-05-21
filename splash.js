@@ -1,3 +1,5 @@
+'use strict'
+
 const figlet = require('figlet')
 const pkg = require('./package')
 

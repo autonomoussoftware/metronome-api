@@ -1,3 +1,5 @@
+'use strict'
+
 const EventEmitter = require('events')
 
 const AuctionStatus = require('../lib/metronome/auction-status')
@@ -84,7 +86,7 @@ describe('AuctionStatus Object', function () {
         AUCTION_STATUS_TASK: auctionStatusEvent
       },
       io: {
-        emit: function (event, data) {
+        emit (event, data) {
           if (event === latestBlockEvent) {
             expect(data).toHaveProperty('number')
             expect(data).toHaveProperty('timestamp')

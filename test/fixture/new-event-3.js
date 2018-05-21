@@ -1,3 +1,5 @@
+'use strict'
+
 const newEvent = {
   _id: '192218_4_2',
   metaData: {

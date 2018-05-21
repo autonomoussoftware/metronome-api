@@ -1,9 +1,8 @@
+'use strict'
+
 const pkg = require('../package')
 const Router = require('express').Router
 const router = new Router()
-
-router.get('/', getRoot)
-router.get('/status', getStatus)
 
 function getRoot (req, res) {
   req.logger.verbose('Responding to root request')
@@ -23,5 +22,8 @@ function getStatus (req, res, next) {
     })
     .catch(err => next(err))
 }
+
+router.get('/', getRoot)
+router.get('/status', getStatus)
 
 module.exports = router

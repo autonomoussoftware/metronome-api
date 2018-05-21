@@ -1,5 +1,6 @@
-const beforeExit = require('before-exit')
+'use strict'
 
+const beforeExit = require('before-exit')
 const config = require('config')
 
 if (config.newrelic && config.newrelic.licenseKey) {

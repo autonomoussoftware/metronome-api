@@ -1,3 +1,5 @@
+'use strict'
+
 const config = require('./config')
 config.port = 9000
 
@@ -95,7 +97,7 @@ describe('Account Routes', () => {
       })
     })
 
-    it('responds with a 404 error if an account does not exist with the given id', (done) => {
+    it('responds with a 404 error if an account does not exist with the given id', done => {
       request.get(`/account/12`, { json: true }, (err, clientRes) => {
         if (err) { return done(err) }
 
