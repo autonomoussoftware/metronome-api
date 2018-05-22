@@ -28,11 +28,11 @@
 
 The following environment variables are needed for the API to work:
 
-* `MET__ETH__WEB_SOCKET_URL`: The WebSocket URL of the Ethereum node.
+* `ETH_WS_URL`: The WebSocket URL of the Ethereum node.
 
   I.E. `ws://node.metronome.io:8546`.
 
-* `MET__MONGO__URL`: The MongoDB URL.
+* `MONGO_URL`: The MongoDB URL.
 
   I.E. `mongodb://localhost/met`.
 

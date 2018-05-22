@@ -37,8 +37,8 @@
 
   "eth": {
     "ipcPath": "ETH_IPC_PATH",
-    "webSocketUrl": "ETH_WS_API_URL",
-    "minterAddress": "ETH_MINTER_ADDR",
+    "webSocketUrl": "ETH_WS_URL",
+    "minterAddress": "ETH_MINTER_ADDRESS",
     "exportStartBlock": "ETH_EXPORT_START_BLOCK"
   }
 }
