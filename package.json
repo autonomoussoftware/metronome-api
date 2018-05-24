@@ -43,7 +43,7 @@
     "express": "4.16.3",
     "express-rest-api": "0.1.0",
     "figlet": "1.2.0",
-    "metronomejs": "git@github.com:MetronomeToken/metronomejs.git#ropsten",
+    "metronome-contracts": "1.0.0",
     "mongoose": "5.1.1",
     "mongoose-count-and-find": "1.0.0",
     "mongoose-cu-timestamps": "1.0.0",
