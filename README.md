@@ -51,9 +51,6 @@ $ npm run dev
 
 # Run test cases
 $ npm test
-
-# Check config values
-$ npm run config
 ```
 
 ## Prod Setup

@@ -2,13 +2,13 @@ node_modules
 coverage
 *.log*
 .DS_Store
-.metrc
-.metrc.*
 .vscode
+
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
 newrelic_agent.log
 config/local.json
