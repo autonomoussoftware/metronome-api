@@ -9,6 +9,7 @@ coverage
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+.ebextensions
 
 newrelic_agent.log
 config/local.json

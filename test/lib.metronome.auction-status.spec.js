@@ -27,7 +27,7 @@ const heartbeatMock = {
   _lastPurchasePrice: '3300000000000'
 }
 
-const metronomeMock = {
+const metronomeContractsMock = {
   auctions: {
     methods: {
       auctionStartTime: () => ({ call: () => Promise.resolve() }),
@@ -67,7 +67,7 @@ const web3Mock = {
 }
 
 const ethApiMock = {
-  metronome: metronomeMock,
+  metronomeContracts: metronomeContractsMock,
   web3: web3Mock
 }
 
