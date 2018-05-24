@@ -62,7 +62,8 @@ const web3Mock = {
   },
 
   utils: {
-    fromWei: () => {}
+    fromWei: () => {},
+    toBN: () => ({ sub: () => 0 })
   }
 }
 

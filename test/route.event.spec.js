@@ -17,15 +17,14 @@ const newEvent3 = require('./fixture/new-event-3')
 const TOTAL_EVENTS = 3
 
 describe('Event Routes', () => {
-  beforeAll(done => {
-    metApi.start()
-      .then(connection.collection('events').remove({}))
-      .then(connection.collection('events').insertMany([newEvent1, newEvent2, newEvent3]))
-      .then(done)
+  beforeAll(() => {
+    return metApi.start()
+      .then(() => connection.collection('events').remove({}))
+      .then(() => connection.collection('events').insertMany([newEvent1, newEvent2, newEvent3]))
   })
 
   afterAll(() => {
-    connection.collection('events').remove({})
+    return connection.collection('events').remove({})
       .then(() => metApi.stop())
   })
 
