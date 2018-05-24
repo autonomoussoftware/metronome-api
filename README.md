@@ -32,6 +32,10 @@ The following environment variables are needed for the API to work:
 
   I.E. `ws://node.metronome.io:8546`.
 
+* `ETH_CHAIN`: The name of the Ethereum chain (`ropsten` or `mainnet`).
+
+  I.E. `mainnet`.
+
 * `MONGO_URL`: The MongoDB URL.
 
   I.E. `mongodb://localhost/met`.

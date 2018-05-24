@@ -37,6 +37,7 @@
 
   "eth": {
     "ipcPath": "ETH_IPC_PATH",
+    "chain": "ETH_CHAIN",
     "webSocketUrl": "ETH_WS_URL",
     "minterAddress": "ETH_MINTER_ADDRESS",
     "exportStartBlock": "ETH_EXPORT_START_BLOCK"
