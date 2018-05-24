@@ -4,7 +4,7 @@
 
 🖲 Metronome Token REST API
 
-[![Build Status](https://travis-ci.com/MetronomeToken/metronome-api.svg?token=zFtwnjoHbEAEPUQyswR1&branch=master)](https://travis-ci.com/MetronomeToken/metronome-desktop-wallet)
+[![Build Status](https://travis-ci.com/MetronomeToken/metronome-api.svg?token=qEmtVFLbCgqTjfZqcnDs&branch=develop)](https://travis-ci.com/MetronomeToken/metronome-api)
 [![Code Style](https://img.shields.io/badge/code%20style-bloq-0063a6.svg)](https://github.com/bloq/eslint-config-bloq)
 
 ## Index
@@ -42,29 +42,29 @@ The following environment variables are needed for the API to work:
 
 ### List Config
 
-> You can use `$ npm run config` to check the values that the API will use when you start it.
+> You can use `npm run config` to check the values that the API will use when you start it.
 
 ## Dev Setup
 
 ```bash
 # Install dependencies
-$ npm i
+npm i
 
 # Run dev mode
-$ npm run dev
+npm run dev
 
 # Run test cases
-$ npm test
+npm test
 ```
 
 ## Prod Setup
 
 ```bash
 # Install dependencies
-$ npm i
+npm i
 
 # Run dev mode
-$ npm start
+npm start
 ```
 
 ## REST API
