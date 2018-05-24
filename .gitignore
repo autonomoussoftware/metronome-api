@@ -1,15 +1,8 @@
-node_modules
-coverage
-*.log*
+
 .DS_Store
 .vscode
-
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
-.ebextensions
-
-newrelic_agent.log
+*.log*
 config/local.json
+coverage
+newrelic_agent.log
+node_modules

@@ -1,11 +1,8 @@
 {
-  "extends": ["bloq"],
-
   "env": {
-    "jest": true,
     "node": true
   },
-
+  "extends": ["bloq"],
   "rules": {
     "no-shadow": ["error", { "allow": ["err"] }],
     "arrow-body-style": ["off"]
