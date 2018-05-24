@@ -1,12 +1,13 @@
 'use strict'
 
-const config = require('./config')
-config.port = 9001
+const config = require('config')
+const request = require('request')
+  .defaults({ baseUrl: 'http://localhost:9000' })
 
-let request = require('request')
+const MetApi = require('../lib')
+const logger = require('../logger')
 
-const metApi = require('../')
-request = request.defaults({ baseUrl: 'http://localhost:9001' })
+const metApi = new MetApi(config, logger)
 
 describe('Root Routes', () => {
   beforeAll(() => metApi.start())

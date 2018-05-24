@@ -1,18 +1,18 @@
 'use strict'
 
-const config = require('./config')
-config.port = 9002
+const config = require('config')
+const request = require('request')
+  .defaults({ baseUrl: 'http://localhost:9000' })
 
-let request = require('request')
+const MetApi = require('../lib')
+const logger = require('../logger')
 
-const metApi = require('../')
+const metApi = new MetApi(config, logger)
 const connection = metApi.database.mongoose.connection
 
 const newEvent1 = require('./fixture/new-event-1')
 const newEvent2 = require('./fixture/new-event-2')
 const newEvent3 = require('./fixture/new-event-3')
-
-request = request.defaults({ baseUrl: 'http://localhost:9002' })
 
 const TOTAL_EVENTS = 3
 

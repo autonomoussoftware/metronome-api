@@ -3,7 +3,7 @@
 const beforeExit = require('before-exit')
 const config = require('config')
 
-if (config.newrelic && config.newrelic.licenseKey) {
+if (config.newRelic.licenseKey) {
   require('newrelic')
 }
 
@@ -15,8 +15,18 @@ delete loggeableConfig.__$
 
 logger.info('API is starting', loggeableConfig)
 
+const metApi = new MetApi(config, logger)
+
 beforeExit.do(function (signal) {
   logger.error('Shutting down API on signal', signal)
+  return metApi.stop()
 })
 
-module.exports = new MetApi(config, logger)
+metApi.start()
+  .then(function () {
+    logger.info(`Listening for HTTP requests 🚀 🔥`)
+  })
+  .catch(function (err) {
+    logger.error(`Could not start API: ${err.message}`)
+    process.exit(1)
+  })

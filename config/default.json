@@ -1,26 +1,23 @@
 {
-  "port": 3002,
-
-  "server": {
-    "maxResultsLimit": 1000,
-    "queryLimit": 500
-  },
-
   "cors": {
     "origin": "*"
   },
-
-  "mongo": {
-    "url": "mongodb://localhost/met"
+  "eth": {
+    "chain": "ropsten",
+    "enabled": true,
+    "exportStartBlock": 0,
+    "founderTokens": "2000000000000000000000000",
+    "ipcPath": "/Library/Ethereum/geth.ipc",
+    "minterAddress": "0x0000000000000000000000000000000000000000",
+    "webSocketUrl": "ws://localhost:8546"
   },
-
   "logger": {
     "console": {
-      "level": "debug",
-      "timestamp": true,
+      "colorize": true,
       "handleExceptions": true,
       "humanReadableUnhandledException": true,
-      "colorize": true
+      "level": "debug",
+      "timestamp": true
     },
     "papertrail": {
       "colorize": true,
@@ -29,14 +26,13 @@
       "inlineMeta": true
     }
   },
-
-  "eth": {
-    "enabled": true,
-    "chain": "ropsten",
-    "ipcPath": "/Library/Ethereum/geth.ipc",
-    "webSocketUrl": "ws://localhost:8546",
-    "minterAddress": "0x0000000000000000000000000000000000000000",
-    "exportStartBlock": 0,
-    "founderTokens": "2000000000000000000000000"
+  "mongo": {
+    "url": "mongodb://localhost/met"
+  },
+  "newRelic": {},
+  "port": 3002,
+  "server": {
+    "maxResultsLimit": 1000,
+    "queryLimit": 500
   }
 }

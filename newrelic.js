@@ -3,10 +3,10 @@
 const config = require('config')
 exports.config = {
   app_name: ['metronome-api'],
-  license_key: config.newrelic.licenseKey,
+  license_key: config.newRelic.licenseKey,
 
   logging: {
-    level: config.newrelic.loggingLevel
+    level: config.newRelic.loggingLevel
   },
 
   allow_all_headers: true,

@@ -1,18 +1,18 @@
 'use strict'
 
-const config = require('./config')
-config.port = 9000
+const config = require('config')
+const request = require('request')
+  .defaults({ baseUrl: 'http://localhost:9000' })
 
-let request = require('request')
+const MetApi = require('../lib')
+const logger = require('../logger')
 
-const metApi = require('../')
+const metApi = new MetApi(config, logger)
 const connection = metApi.database.mongoose.connection
 
 const newAccount1 = require('./fixture/new-account-1')
 const newAccount2 = require('./fixture/new-account-2')
 const newAccount3 = require('./fixture/new-account-3')
-
-request = request.defaults({ baseUrl: 'http://localhost:9000' })
 
 const TOTAL_ACCOUNTS = 3
 
