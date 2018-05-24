@@ -40,10 +40,6 @@ The following environment variables are needed for the API to work:
 
   I.E. `mongodb://localhost/met`.
 
-### List Config
-
-> You can use `npm run config` to check the values that the API will use when you start it.
-
 ## Dev Setup
 
 ```bash
