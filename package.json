@@ -23,7 +23,7 @@
     "debug": "node --inspect ./bin/met-api",
     "lint": "eslint . --ext .js",
     "lint:fix": "eslint . --fix .js",
-    "test": "jest --forceExit",
+    "test": "jest --forceExit -i",
     "test:dev": "jest --watch",
     "prepush": "npm test",
     "precommit": "npm run lint"
