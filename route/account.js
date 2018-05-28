@@ -1,11 +1,18 @@
+'use strict'
+
 const Router = require('express').Router
 const router = new Router()
 
-router.get('/', queryAccounts)
-router.get('/:address', findAccountByAddress)
-
 function queryAccounts (req, res, next) {
-  req.logger.info('Querying accounts', req.query)
+  const logQuery = JSON.stringify(req.query).substring(req.config.queryLimit)
+  req.logger.info(`Querying accounts: ${logQuery}`)
+
+  const addressesToExclude = [
+    req.config.eth.minterAddress
+  ]
+
+  req.query || (req.query = {})
+  req.query._id = { $nin: addressesToExclude }
 
   req.model('Account').countAndFind(req.query)
     .skip(req.skip)
@@ -24,7 +31,7 @@ function findAccountByAddress (req, res, next) {
   req.logger.info(`Finding account with address ${req.params.address}`)
 
   req.model('Account').findById(req.params.address)
-    .then((account) => {
+    .then(account => {
       if (!account) { return res.status(404).end() }
 
       req.logger.verbose('Sending account to client')
@@ -32,5 +39,8 @@ function findAccountByAddress (req, res, next) {
     })
     .catch(err => next(err))
 }
+
+router.get('/', queryAccounts)
+router.get('/:address(0x[0-9a-fA-F]{40})', findAccountByAddress)
 
 module.exports = router

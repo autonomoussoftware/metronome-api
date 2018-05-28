@@ -1,23 +1,14 @@
+'use strict'
+
 const pkg = require('../package')
 const Router = require('express').Router
 const router = new Router()
-
-router.get('/', getRoot)
-router.get('/config', getConfig)
-router.get('/status', getStatus)
 
 function getRoot (req, res) {
   req.logger.verbose('Responding to root request')
   req.logger.verbose('Sending response to client')
 
   res.send({ name: pkg.name, version: pkg.version })
-}
-
-function getConfig (req, res, next) {
-  req.logger.verbose('Responding to config request')
-  req.logger.verbose('Sending config to client')
-
-  res.send(req.config.eth)
 }
 
 function getStatus (req, res, next) {
@@ -31,5 +22,8 @@ function getStatus (req, res, next) {
     })
     .catch(err => next(err))
 }
+
+router.get('/', getRoot)
+router.get('/status', getStatus)
 
 module.exports = router

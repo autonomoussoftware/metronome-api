@@ -1,0 +1,14 @@
+{
+  "eth": {
+    "enabled": false
+  },
+  "logger": {
+    "console": {
+      "level": "warn"
+    }
+  },
+  "mongo": {
+    "url": "mongodb://localhost/met-test"
+  },
+  "port": 9000
+}

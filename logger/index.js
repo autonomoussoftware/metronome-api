@@ -1,8 +1,10 @@
+'use strict'
+
 const winston = require('winston')
 const winstonChildLogger = require('winston-child-logger')
 const SentryTransport = require('winston-sentry-transport')
 const PapertrailTransport = require('winston-papertrail').Papertrail
-const config = require('../config')
+const config = require('config')
 
 const logger = winstonChildLogger(new winston.Logger())
 

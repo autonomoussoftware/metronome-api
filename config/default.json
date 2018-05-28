@@ -1,0 +1,38 @@
+{
+  "cors": {
+    "origin": "*"
+  },
+  "eth": {
+    "chain": "ropsten",
+    "enabled": true,
+    "exportStartBlock": 0,
+    "founderTokens": "2000000000000000000000000",
+    "ipcPath": "/Library/Ethereum/geth.ipc",
+    "minterAddress": "0x0000000000000000000000000000000000000000",
+    "webSocketUrl": "ws://localhost:8546"
+  },
+  "logger": {
+    "console": {
+      "colorize": true,
+      "handleExceptions": true,
+      "humanReadableUnhandledException": true,
+      "level": "debug",
+      "timestamp": true
+    },
+    "papertrail": {
+      "colorize": true,
+      "flushOnClose": true,
+      "handleExceptions": true,
+      "inlineMeta": true
+    }
+  },
+  "mongo": {
+    "url": "mongodb://localhost/met"
+  },
+  "newRelic": {},
+  "port": 3002,
+  "server": {
+    "maxResultsLimit": 1000,
+    "queryLimit": 500
+  }
+}

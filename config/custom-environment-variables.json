@@ -1,0 +1,37 @@
+{
+  "cors": {
+    "origin": "CORS_ORIGIN"
+  },
+  "eth": {
+    "chain": "ETH_CHAIN",
+    "exportStartBlock": "ETH_EXPORT_START_BLOCK",
+    "ipcPath": "ETH_IPC_PATH",
+    "minterAddress": "ETH_MINTER_ADDRESS",
+    "webSocketUrl": "ETH_WS_URL"
+  },
+  "mongo": {
+    "url": "MONGO_URL"
+  },
+  "logger": {
+    "console": {
+      "level": "LOGGER_CONSOLE_LEVEL"
+    },
+    "papertrail": {
+      "host": "LOGGER_PAPERTRAIL_HOST",
+      "level": "LOGGER_PAPERTRAIL_LEVEL",
+      "port": "LOGGER_PAPERTRAIL_PORT",
+      "program": "LOGGER_PAPERTRAIL_PROGRAM"
+    },
+    "sentry": {
+      "dsn": "LOGGER_SENTRY_DSN"
+    }
+  },
+  "newRelic": {
+    "licenseKey": "NEW_RELIC_LICENSE_KEY",
+    "logginGgLevel": "NEW_RELIC_LOGGING_LEVEL"
+  },
+  "port": "PORT",
+  "server": {
+    "maxResultsLimit": "SERVER_MAX_RESULTS_LIMIT"
+  }
+}
