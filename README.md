@@ -4,7 +4,7 @@
 
 🖲 Metronome Token REST API
 
-[![Build Status](https://travis-ci.com/MetronomeToken/metronome-api.svg?token=qEmtVFLbCgqTjfZqcnDs&branch=develop)](https://travis-ci.com/MetronomeToken/metronome-api)
+[![Build Status](https://travis-ci.com/autonomoussoftware/metronome-api.svg?token=qEmtVFLbCgqTjfZqcnDs&branch=master)](https://travis-ci.com/autonomoussoftware/metronome-api)
 [![Code Style](https://img.shields.io/badge/code%20style-bloq-0063a6.svg)](https://github.com/bloq/eslint-config-bloq)
 
 ## Index
@@ -419,4 +419,4 @@ const socket = io("ws://api.met.bloqrock.net"); // API URL
 
 ## LICENSE
 
-[MIT License](https://github.com/MetronomeToken/metronome-api/blob/develop/LICENSE).
+[MIT License](https://github.com/autonomoussoftware/metronome-api/blob/master/LICENSE).
