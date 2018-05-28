@@ -97,7 +97,7 @@ describe('Event Routes', () => {
     })
 
     it('responds with a 404 error if an event does not exist with the given id', done => {
-      request.get(`/event/12`, { json: true }, (err, clientRes) => {
+      request.get('/event/12', { json: true }, (err, clientRes) => {
         if (err) { return done(err) }
 
         expect(clientRes.statusCode).toBe(404)

@@ -24,7 +24,7 @@ beforeExit.do(function (signal) {
 
 metApi.start()
   .then(function () {
-    logger.info(`Listening for HTTP requests 🚀 🔥`)
+    logger.info('Listening for HTTP requests 🚀 🔥')
   })
   .catch(function (err) {
     logger.error(`Could not start API: ${err.message}`)
