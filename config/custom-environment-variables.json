@@ -6,6 +6,8 @@
     "chain": "ETH_CHAIN",
     "exportStartBlock": "ETH_EXPORT_START_BLOCK",
     "ipcPath": "ETH_IPC_PATH",
+    "nodeTiemout": "ETH_NODE_TIMEOUT",
+    "reconnectInterval": "ETH_RECONNECT_INTERVAL",
     "minterAddress": "ETH_MINTER_ADDRESS",
     "webSocketUrl": "ETH_WS_URL"
   },
