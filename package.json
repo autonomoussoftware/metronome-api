@@ -37,7 +37,7 @@
     "express": "4.16.3",
     "express-rest-api": "0.1.0",
     "figlet": "1.2.0",
-    "metronome-contracts": "1.2.0",
+    "metronome-contracts": "1.4.0",
     "mongoose": "5.1.2",
     "mongoose-count-and-find": "1.0.0",
     "mongoose-cu-timestamps": "1.0.0",
