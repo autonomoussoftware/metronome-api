@@ -1,32 +1,23 @@
 'use strict'
 
+const { logger: config } = require('config')
 const winston = require('winston')
-const winstonChildLogger = require('winston-child-logger')
-const SentryTransport = require('winston-sentry-transport')
-const PapertrailTransport = require('winston-papertrail').Papertrail
-const config = require('config')
+require('winston-papertrail')
+require('winston-sentry-transport')
 
-const logger = winstonChildLogger(new winston.Logger())
-
-logger.levelLength = 7
-logger.padLevels = true
-
-logger.filters.push((_, message, meta) => {
-  if (!message && meta instanceof Error) { return meta.stack || meta.message }
-
-  return message
-})
-
-if (config.logger.console) {
-  logger.add(winston.transports.Console, config.logger.console)
+const requiredProps = {
+  Papertrail: 'host',
+  Sentry: 'dns'
 }
 
-if (config.logger.sentry && config.logger.sentry.dns) {
-  logger.add(SentryTransport, config.logger.sentry)
-}
+const transports = Object.keys(config)
+  .map(t =>
+    config[t] &&
+    (requiredProps[t] ? config[t][requiredProps[t]] : true) &&
+    new winston.transports[t](config[t])
+  )
+  .filter(t => !!t)
 
-if (config.logger.papertrail && config.logger.papertrail.host) {
-  logger.add(PapertrailTransport, config.logger.papertrail)
-}
+const logger = new winston.Logger({ transports })
 
 module.exports = logger

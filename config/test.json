@@ -3,12 +3,13 @@
     "enabled": false
   },
   "logger": {
-    "console": {
+    "Console": {
       "level": "warn"
     }
   },
   "mongo": {
-    "url": "mongodb://localhost/met-test"
+    "url": "mongodb://localhost",
+    "dbName": "met-test"
   },
   "port": 9000
 }
