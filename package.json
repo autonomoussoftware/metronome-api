@@ -47,6 +47,7 @@
     "promise-all-props": "1.0.1",
     "request": "2.87.0",
     "socket.io": "2.1.1",
+    "time-bombs": "1.0.0",
     "web3": "1.0.0-beta.34",
     "winston": "2.4.2",
     "winston-child-logger": "0.0.1",

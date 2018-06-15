@@ -37,9 +37,13 @@ The following environment variables are needed for the API to work:
 
   I.E. `mainnet`.
 
-* `MONGO_URL`: The MongoDB URL.
+* `MONGO_URL`: The Mongo instance URL.
 
-  I.E. `mongodb://localhost/met`.
+  I.E. `mongodb://localhost`.
+
+* `MONGO_DB_NAME`: The Mongo database name.
+
+  I.E. `metronome`.
 
 ## Dev Setup
 

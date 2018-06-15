@@ -14,14 +14,14 @@
     "webSocketUrl": "ws://localhost:8546"
   },
   "logger": {
-    "console": {
+    "Console": {
       "colorize": true,
       "handleExceptions": true,
       "humanReadableUnhandledException": true,
       "level": "debug",
       "timestamp": true
     },
-    "papertrail": {
+    "Papertrail": {
       "colorize": true,
       "flushOnClose": true,
       "handleExceptions": true,
@@ -29,7 +29,8 @@
     }
   },
   "mongo": {
-    "url": "mongodb://localhost/met"
+    "url": "mongodb://localhost",
+    "dbName": "metronome"
   },
   "newRelic": {},
   "port": 3002,
