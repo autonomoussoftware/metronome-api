@@ -3,7 +3,7 @@
     "origin": "*"
   },
   "eth": {
-    "chain": "ropsten",
+    "chain": "mainnet",
     "enabled": true,
     "exportStartBlock": 0,
     "nodeTiemout": 30000,
