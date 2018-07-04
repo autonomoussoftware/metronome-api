@@ -11,8 +11,8 @@ function createRouter (metApi) {
       return
     }
 
-    metApi.auctionStatus.getAuctionStatus()
-      .then(status => res.json(status))
+    metApi.auctionStatus.getStatus()
+      .then(status => res.json(status.auction))
       .catch(next)
   }
 
