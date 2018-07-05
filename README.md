@@ -298,21 +298,29 @@ import io from "socket.io-client";
 const socket = io("ws://api.met.bloqrock.net"); // API URL
 ```
 
-* `AUCTION_STATUS_TASK`
+* `status-updated`
 
-  This event is emitted any time the status of MET auction changes. Attaching to this event you can get all needed information of Initial or Daily Auctions through a JSON object.
+  This event is emitted any time the status of MET auction and converter changes. It provides a JSON
+  object with the Initial / Daily Auctions and Converter information
 
   ```json
   {
-    "currentAuction": "10",
-    "currentPrice": "3300000000000",
-    "genesisTime": 1520035200,
-    "lastPurchasePrice": "3300000000000",
-    "lastPurchaseTime": 1521508680,
-    "nextAuctionStartTime": 1521590400,
-    "tokenCirculation": "10028800000000000000000000",
-    "tokenRemaining": "0",
-    "tokenSold": "10028800000000000000000000"
+    "auction": {
+      "currentAuction": "10",
+      "currentPrice": "3300000000000",
+      "genesisTime": 1520035200,
+      "lastPurchasePrice": "3300000000000",
+      "lastPurchaseTime": 1521508680,
+      "nextAuctionStartTime": 1521590400,
+      "tokenSupply": "10028800000000000000000000",
+      "tokenRemaining": "0",
+      "tokenSold": "10028800000000000000000000",
+    },
+    "converter": {
+      "availableMet": "55676878422677971892811",
+      "availableEth": "491097768014131034348",
+      "currentPrice": "8820180684783793"
+    }
   }
   ```
 
@@ -321,8 +329,9 @@ const socket = io("ws://api.met.bloqrock.net"); // API URL
     ```js
     import io from "socket.io-client";
     const socket = io("ws://api.met.bloqrock.net"); // API URL
-    socket.on("AUCTION_STATUS_TASK", auctionStatus =>
-      console.log(auctionStatus)
+    socket.on("status-updated", ({ auction, converter }) =>
+      console.log("Auction status: ", auction)
+      console.log("Converter status", converter)
     );
     ```
 

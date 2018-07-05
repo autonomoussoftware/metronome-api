@@ -6,12 +6,12 @@ function createRouter (metApi) {
   const router = new Router()
 
   function getStatus (req, res, next) {
-    if (!metApi.auctionStatus) {
+    if (!metApi.status) {
       next(new Error('API not initialized'))
       return
     }
 
-    metApi.auctionStatus.getStatus()
+    metApi.status.getStatus()
       .then(status => res.json(status.auction))
       .catch(next)
   }
