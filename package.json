@@ -19,6 +19,7 @@
   "scripts": {
     "check": "dependency-check . && dependency-check . --unused --no-dev",
     "check:outdated": "npm-check -i eslint-config* -i husky",
+    "config": "node -e \"console.log(require('config'))\"",
     "dev": "nodemon server",
     "debug": "node --inspect ./bin/met-api",
     "lint": "eslint . --ext .js",
