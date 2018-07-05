@@ -47,6 +47,14 @@ const metronomeContractsMock = {
     methods: {
       totalSupply: () => ({ call: () => Promise.resolve() })
     }
+  },
+
+  autonomousConverter: {
+    methods: {
+      getMetBalance: () => ({ call: () => Promise.resolve() }),
+      getEthBalance: () => ({ call: () => Promise.resolve() }),
+      getEthForMetResult: () => ({ call: () => Promise.resolve() })
+    }
   }
 }
 
