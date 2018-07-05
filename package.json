@@ -19,6 +19,7 @@
   "scripts": {
     "check": "dependency-check . && dependency-check . --unused --no-dev",
     "check:outdated": "npm-check -i eslint-config* -i husky",
+    "config": "node -e \"console.log(require('config'))\"",
     "dev": "nodemon server",
     "debug": "node --inspect ./bin/met-api",
     "lint": "eslint . --ext .js",
@@ -37,7 +38,7 @@
     "express": "4.16.3",
     "express-rest-api": "0.1.0",
     "figlet": "1.2.0",
-    "metronome-contracts": "1.4.0",
+    "metronome-contracts": "1.4.1",
     "mongoose": "5.1.2",
     "mongoose-count-and-find": "1.0.0",
     "mongoose-cu-timestamps": "1.0.0",

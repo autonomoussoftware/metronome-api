@@ -2,7 +2,7 @@
 
 const EventEmitter = require('events')
 
-const AuctionStatus = require('../lib/metronome/auction-status')
+const MetronomeStatus = require('../lib/metronome/status')
 
 const loggerMock = {
   error: () => {},
@@ -47,6 +47,14 @@ const metronomeContractsMock = {
     methods: {
       totalSupply: () => ({ call: () => Promise.resolve() })
     }
+  },
+
+  autonomousConverter: {
+    methods: {
+      getMetBalance: () => ({ call: () => Promise.resolve() }),
+      getEthBalance: () => ({ call: () => Promise.resolve() }),
+      getEthForMetResult: () => ({ call: () => Promise.resolve() })
+    }
   }
 }
 
@@ -72,10 +80,10 @@ const ethApiMock = {
   web3: web3Mock
 }
 
-const auctionStatusEvent = 'AUCTION_STATUS_AuctionStatus'
+const statusEvent = 'status-updated'
 const latestBlockEvent = 'LATEST_BLOCK'
 
-describe('AuctionStatus Object', function () {
+describe('MetronomeStatus Object', function () {
   test('emit status on new block event', function (done) {
     const emitter = new EventEmitter()
     const subscribe = web3Mock.eth.subscribe
@@ -84,14 +92,14 @@ describe('AuctionStatus Object', function () {
     const socketMock = {
       events: {
         LATEST_BLOCK: latestBlockEvent,
-        AUCTION_STATUS_TASK: auctionStatusEvent
+        STATUS_UPDATED: statusEvent
       },
       io: {
         emit (event, data) {
           if (event === latestBlockEvent) {
             expect(data).toHaveProperty('number')
             expect(data).toHaveProperty('timestamp')
-          } else if (event === auctionStatusEvent) {
+          } else if (event === statusEvent) {
             expect(data).toHaveProperty('lastPurchasePrice')
             expect(data).toHaveProperty('lastPurchaseTime')
             expect(data).toHaveProperty('nextAuctionStartTime')
@@ -107,7 +115,7 @@ describe('AuctionStatus Object', function () {
     }
 
     // eslint-disable-next-line no-new
-    new AuctionStatus({ logger: loggerMock, ethApi: ethApiMock, socket: socketMock })
+    new MetronomeStatus({ logger: loggerMock, ethApi: ethApiMock, socket: socketMock })
     emitter.emit('newBlockHeaders', latestBlockMock)
   })
 
@@ -117,13 +125,13 @@ describe('AuctionStatus Object', function () {
     const socketMock = {
       events: {
         LATEST_BLOCK: latestBlockEvent,
-        AUCTION_STATUS_TASK: auctionStatusEvent
+        AUCTION_STATUS_TASK: statusEvent
       },
       io: ioEmitter
     }
 
     const socketEmitter = new EventEmitter()
-    socketEmitter.on(auctionStatusEvent, function (data) {
+    socketEmitter.on(statusEvent, function (data) {
       expect(data).toHaveProperty('lastPurchasePrice')
       expect(data).toHaveProperty('lastPurchaseTime')
       expect(data).toHaveProperty('nextAuctionStartTime')
@@ -139,7 +147,7 @@ describe('AuctionStatus Object', function () {
     })
 
     // eslint-disable-next-line no-new
-    new AuctionStatus({ logger: loggerMock, ethApi: ethApiMock, socket: socketMock })
+    new MetronomeStatus({ logger: loggerMock, ethApi: ethApiMock, socket: socketMock })
     ioEmitter.emit('connection', socketEmitter)
   })
 })
