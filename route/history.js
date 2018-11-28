@@ -25,15 +25,18 @@ const logResponse = (from, to) =>
     return data
   }
 
-function getHistoricalData (req, res, next) {
-  const { from, to } = req.query
+const getHistoricalData = dbCall =>
+  function (req, res, next) {
+    const { from, to } = req.query
 
-  db.getData(from, to)
-    .then(logResponse(from, to))
-    .then(res.json.bind(res))
-    .catch(next)
-}
+    dbCall(from, to)
+      .then(logResponse(from, to))
+      .then(res.json.bind(res))
+      .catch(next)
+  }
 
-router.get('/', parseFromTo, getHistoricalData)
+router.get('/', parseFromTo, getHistoricalData(db.getData))
+router.get('/auction', parseFromTo, getHistoricalData(db.getAuctionData))
+router.get('/converter', parseFromTo, getHistoricalData(db.getConverterData))
 
 module.exports = router
