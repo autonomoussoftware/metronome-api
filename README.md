@@ -81,17 +81,6 @@ npm start
   }
   ```
 
-* `GET /config`
-
-  Will return a JSON object with Metronome Contract Addresses.
-
-  ```json
-  {
-    "tokenAddress": "0x825a2ce3547e77397b7eac4eb464e2edcfaae514",
-    "auctionAddress": "0x9aeb1035b327f4f81198090f4183f21ca6fcb040"
-  }
-  ```
-
 * `GET /status`
 
   Will return a 204 HTTP status code while the API is up and running.
@@ -150,7 +139,7 @@ npm start
 
   Will return a JSON object with an array that contains all events matching the given address parameter. The match will be succeded if any of these properties: `metaData.returnValues._from, metaData.returnValues._to, metaData.returnValues._owner, metaData.returnValues._spender` are equals to the given address. This endpoint will also return the total amount matching events.
 
-  I.E. `GET /event/address/0xa25A2cE3547e77397b7EAc4eb464E2eDCFaAE511`
+  I.E. `GET /event/account/0xa25A2cE3547e77397b7EAc4eb464E2eDCFaAE511`
 
   ```json
   {
@@ -331,7 +320,7 @@ The API is integrated with [socket.io](https://socket.io/) to dispatch different
 
 ```js
 import io from "socket.io-client";
-const socket = io("ws://api.met.bloqrock.net"); // API URL
+const socket = io("http://localhost:3002"); // API URL
 ```
 
 * `status-updated`
@@ -364,7 +353,7 @@ const socket = io("ws://api.met.bloqrock.net"); // API URL
 
     ```js
     import io from "socket.io-client";
-    const socket = io("ws://api.met.bloqrock.net"); // API URL
+    const socket = io("http://localhost:3002"); // API URL
     socket.on("status-updated", ({ auction, converter }) =>
       console.log("Auction status: ", auction)
       console.log("Converter status", converter)
@@ -400,7 +389,7 @@ const socket = io("ws://api.met.bloqrock.net"); // API URL
   * Client Implementation
     ```js
     import io from "socket.io-client";
-    const socket = io("ws://api.met.bloqrock.net"); // API URL
+    const socket = io("http://localhost:3002"); // API URL
     socket.on("NEW_EVENT", event => console.log(event));
     ```
 
@@ -445,7 +434,7 @@ const socket = io("ws://api.met.bloqrock.net"); // API URL
   * Client Implementation
     ```js
     import io from "socket.io-client";
-    const socket = io("ws://api.met.bloqrock.net"); // API URL
+    const socket = io("http://localhost:3002"); // API URL
     socket.on("LATEST_BLOCK", block => console.log(block));
     ```
 
@@ -463,7 +452,7 @@ const socket = io("ws://api.met.bloqrock.net"); // API URL
   * Client Implementation
     ```js
     import io from "socket.io-client";
-    const socket = io("ws://api.met.bloqrock.net"); // API URL
+    const socket = io("http://localhost:3002"); // API URL
     socket.on("BALANCE_UPDATED", account => console.log(account));
     ```
 
