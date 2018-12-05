@@ -13,6 +13,10 @@
     "minterAddress": "0x0000000000000000000000000000000000000000",
     "webSocketUrl": "ws://localhost:8546"
   },
+  "history": {
+    "auctionOversampling": 10,
+    "maxDataPoints": 250
+  },
   "logger": {
     "Console": {
       "colorize": true,
@@ -28,7 +32,6 @@
       "inlineMeta": true
     }
   },
-  "maxHistoryDataPoints": 250,
   "mongo": {
     "url": "mongodb://localhost",
     "dbName": "metronome"
