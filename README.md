@@ -81,17 +81,6 @@ npm start
   }
   ```
 
-* `GET /config`
-
-  Will return a JSON object with Metronome Contract Addresses.
-
-  ```json
-  {
-    "tokenAddress": "0x825a2ce3547e77397b7eac4eb464e2edcfaae514",
-    "auctionAddress": "0x9aeb1035b327f4f81198090f4183f21ca6fcb040"
-  }
-  ```
-
 * `GET /status`
 
   Will return a 204 HTTP status code while the API is up and running.
@@ -150,7 +139,7 @@ npm start
 
   Will return a JSON object with an array that contains all events matching the given address parameter. The match will be succeded if any of these properties: `metaData.returnValues._from, metaData.returnValues._to, metaData.returnValues._owner, metaData.returnValues._spender` are equals to the given address. This endpoint will also return the total amount matching events.
 
-  I.E. `GET /event/address/0xa25A2cE3547e77397b7EAc4eb464E2eDCFaAE511`
+  I.E. `GET /event/account/0xa25A2cE3547e77397b7EAc4eb464E2eDCFaAE511`
 
   ```json
   {
@@ -240,6 +229,42 @@ npm start
     "updatedAt": "2018-03-20T21:28:31.076Z"
   },
   ```
+  
+* `GET /history?from&to`
+
+  Will return auction and converter historical data points between `from` and `to` times.
+  The two parameters are optional and will default to the last hour if not specified.
+  The result will be an array of data points with a maximun length of 100 items.
+
+  I.E. `GET /history`
+
+  ```json
+  [
+    {
+        "_id": 1543436051,
+        "_lastPurchasePrice": "7591582931609796",
+        "currAuction": "157",
+        "currentAuctionPrice": "7591582931609796",
+        "currTick": "235933",
+        "_dailyMintable": "2880000000000000000000",
+        "hash": "0xcf7a685ed11fdb1dfb42b4f77692aa579b8ad562068b38c78af09bd86933793b",
+        "minting": "0",
+        "number": 6790138,
+        "proceedsBal": "20513204809437326749593",
+        "timestamp": 1543436051,
+        "totalMET": "10452160000000000000000000",
+        "availableMet": "645158546385600485235111",
+        "availableEth": "4959324846430778366640",
+        "currentConverterPrice": "7686962375818597"
+    },
+    ...
+  ]
+  ```
+
+* `GET /history/auction?from&to`
+
+  Similar to `GET /history` but will use a downsampling algorithm that is better suited for auction data.
+  Therefore the data points will represent much better the actual auction price behavior over time, removing the consecutive equal-price data points first and then downsampling.
 
 ## Query, Pagination & Sorting
 
@@ -295,7 +320,7 @@ The API is integrated with [socket.io](https://socket.io/) to dispatch different
 
 ```js
 import io from "socket.io-client";
-const socket = io("ws://api.met.bloqrock.net"); // API URL
+const socket = io("http://localhost:3002"); // API URL
 ```
 
 * `status-updated`
@@ -328,7 +353,7 @@ const socket = io("ws://api.met.bloqrock.net"); // API URL
 
     ```js
     import io from "socket.io-client";
-    const socket = io("ws://api.met.bloqrock.net"); // API URL
+    const socket = io("http://localhost:3002"); // API URL
     socket.on("status-updated", ({ auction, converter }) =>
       console.log("Auction status: ", auction)
       console.log("Converter status", converter)
@@ -364,7 +389,7 @@ const socket = io("ws://api.met.bloqrock.net"); // API URL
   * Client Implementation
     ```js
     import io from "socket.io-client";
-    const socket = io("ws://api.met.bloqrock.net"); // API URL
+    const socket = io("http://localhost:3002"); // API URL
     socket.on("NEW_EVENT", event => console.log(event));
     ```
 
@@ -409,7 +434,7 @@ const socket = io("ws://api.met.bloqrock.net"); // API URL
   * Client Implementation
     ```js
     import io from "socket.io-client";
-    const socket = io("ws://api.met.bloqrock.net"); // API URL
+    const socket = io("http://localhost:3002"); // API URL
     socket.on("LATEST_BLOCK", block => console.log(block));
     ```
 
@@ -427,7 +452,7 @@ const socket = io("ws://api.met.bloqrock.net"); // API URL
   * Client Implementation
     ```js
     import io from "socket.io-client";
-    const socket = io("ws://api.met.bloqrock.net"); // API URL
+    const socket = io("http://localhost:3002"); // API URL
     socket.on("BALANCE_UPDATED", account => console.log(account));
     ```
 

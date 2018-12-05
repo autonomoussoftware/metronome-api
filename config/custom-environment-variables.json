@@ -11,9 +11,9 @@
     "minterAddress": "ETH_MINTER_ADDRESS",
     "webSocketUrl": "ETH_WS_URL"
   },
-  "mongo": {
-    "url": "MONGO_URL",
-    "dbName": "MONGO_DB_NAME"
+  "history": {
+    "auctionOversampling": "HISTORY_AUCTION_OVERSAMPLING",
+    "maxDataPoints": "HISTORY_MAX_DATA_POINTS"
   },
   "logger": {
     "Console": {
@@ -28,6 +28,10 @@
     "Sentry": {
       "dsn": "LOGGER_SENTRY_DSN"
     }
+  },
+  "mongo": {
+    "url": "MONGO_URL",
+    "dbName": "MONGO_DB_NAME"
   },
   "newRelic": {
     "licenseKey": "NEW_RELIC_LICENSE_KEY",
