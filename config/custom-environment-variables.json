@@ -29,6 +29,7 @@
       "dsn": "LOGGER_SENTRY_DSN"
     }
   },
+  "maxHistoryDataPoints": "MAX_HISTORY_DATA_POINTS",
   "newRelic": {
     "licenseKey": "NEW_RELIC_LICENSE_KEY",
     "logginGgLevel": "NEW_RELIC_LOGGING_LEVEL"

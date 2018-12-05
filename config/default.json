@@ -28,6 +28,7 @@
       "inlineMeta": true
     }
   },
+  "maxHistoryDataPoints": 250,
   "mongo": {
     "url": "mongodb://localhost",
     "dbName": "metronome"
