@@ -27,7 +27,9 @@
     "test": "jest --forceExit -i",
     "test:dev": "jest --watch",
     "prepush": "npm test",
-    "precommit": "npm run lint"
+    "precommit": "npm run lint",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "async": "2.6.1",
@@ -53,7 +55,8 @@
     "winston": "2.4.2",
     "winston-child-logger": "0.0.1",
     "winston-papertrail": "1.0.5",
-    "winston-sentry-transport": "1.0.0"
+    "winston-sentry-transport": "1.0.0",
+    "snyk": "^1.120.0"
   },
   "devDependencies": {
     "dependency-check": "3.1.0",
@@ -92,5 +95,6 @@
     "roots": [
       "test/"
     ]
-  }
+  },
+  "snyk": true
 }
