@@ -15,7 +15,7 @@
   },
   "history": {
     "auctionOversampling": 10,
-    "maxDataPoints": 250
+    "maxDataPoints": 500
   },
   "logger": {
     "Console": {
