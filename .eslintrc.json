@@ -2,9 +2,13 @@
   "env": {
     "node": true
   },
-  "extends": ["bloq"],
+  "extends": [
+    "bloq"
+  ],
   "rules": {
+    "arrow-body-style": ["off"],
+    "consistent-return": "warn",
     "no-shadow": ["error", { "allow": ["err"] }],
-    "arrow-body-style": ["off"]
+    "promise/no-promise-in-callback": "off"
   }
 }
