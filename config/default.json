@@ -13,6 +13,10 @@
     "minterAddress": "0x0000000000000000000000000000000000000000",
     "webSocketUrl": "ws://localhost:8546"
   },
+  "history": {
+    "auctionOversampling": 10,
+    "maxDataPoints": 500
+  },
   "logger": {
     "Console": {
       "colorize": true,

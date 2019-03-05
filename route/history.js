@@ -7,24 +7,36 @@ const db = require('../lib/stats-db')
 
 const router = new Router()
 
-function getHistoricalData (req, res, next) {
-  const { from, to } = req.query
+function parseFromTo (req, res, next) {
+  const { query } = req
 
   try {
-    const end = Number.parseInt(to || (Date.now() / 1000))
-    const start = Number.parseInt(from || (end - 3600))
-
-    db.getData(start, end)
-      .then(function (data) {
-        logger.verbose('<--', from, to, data.length)
-        res.json(data)
-      })
-      .catch(next)
+    query.to = Number.parseInt(query.to || (Date.now() / 1000))
+    query.from = Number.parseInt(query.from || (query.to - 3600))
+    next()
   } catch (err) {
     next(err)
   }
 }
 
-router.get('/', getHistoricalData)
+const logResponse = (from, to) =>
+  function (data) {
+    logger.verbose('<--', from, to, data.length)
+    return data
+  }
+
+const getHistoricalData = dbCall =>
+  function (req, res, next) {
+    const { from, to } = req.query
+
+    dbCall(from, to)
+      .then(logResponse(from, to))
+      .then(res.json.bind(res))
+      .catch(next)
+  }
+
+router.get('/', parseFromTo, getHistoricalData(db.getData))
+router.get('/auction', parseFromTo, getHistoricalData(db.getAuctionData))
+router.get('/converter', parseFromTo, getHistoricalData(db.getConverterData))
 
 module.exports = router
