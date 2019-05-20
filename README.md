@@ -6,7 +6,8 @@
 
 [![Build Status](https://travis-ci.com/autonomoussoftware/metronome-api.svg?token=qEmtVFLbCgqTjfZqcnDs&branch=master)](https://travis-ci.com/autonomoussoftware/metronome-api)
 [![Code Style](https://img.shields.io/badge/code%20style-bloq-0063a6.svg)](https://github.com/bloq/eslint-config-bloq)
-[![Known Vulnerabilities](https://snyk.io/test/github/autonomoussoftware/metronome-api/badge.svg?targetFile=package.json)](https://snyk.io/test/github/autonomoussoftware/metronome-api)
+[![Known Vulnerabilities](https://snyk.io/test/github/autonomoussoftware/metronome-api/badge.svg)](https://snyk.io/test/github/autonomoussoftware/metronome-api)
+
 
 ## Index
 
