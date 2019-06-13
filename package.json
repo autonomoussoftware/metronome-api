@@ -22,6 +22,7 @@
     "config": "node -e \"console.log(require('config'))\"",
     "dev": "nodemon server",
     "debug": "node --inspect ./bin/met-api",
+    "docker:build": "docker build -t metronome-api .",
     "lint": "eslint . --ext .js",
     "lint:fix": "eslint . --fix .js",
     "test": "jest --forceExit -i",
