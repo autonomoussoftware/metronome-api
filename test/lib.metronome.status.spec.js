@@ -28,7 +28,7 @@ const heartbeatMock = {
 }
 
 const metronomeContractsMock = {
-  auctions: {
+  Auctions: {
     methods: {
       auctionStartTime: () => ({ call: () => Promise.resolve() }),
       auctionSupply: () => ({ call: () => Promise.resolve() }),
@@ -43,13 +43,13 @@ const metronomeContractsMock = {
     }
   },
 
-  metToken: {
+  METToken: {
     methods: {
       totalSupply: () => ({ call: () => Promise.resolve() })
     }
   },
 
-  autonomousConverter: {
+  AutonomousConverter: {
     methods: {
       getMetBalance: () => ({ call: () => Promise.resolve() }),
       getEthBalance: () => ({ call: () => Promise.resolve() }),
