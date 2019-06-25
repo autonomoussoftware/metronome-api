@@ -5,6 +5,7 @@
   "eth": {
     "chain": "ETH_CHAIN",
     "exportStartBlock": "ETH_EXPORT_START_BLOCK",
+    "founderTokens": "ETH_FOUNDER_TOKENS",
     "ipcPath": "ETH_IPC_PATH",
     "nodeTiemout": "ETH_NODE_TIMEOUT",
     "reconnectInterval": "ETH_RECONNECT_INTERVAL",
