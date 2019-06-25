@@ -3,9 +3,9 @@
     "origin": "*"
   },
   "eth": {
-    "chain": "mainnet",
+    "chain": "ropsten",
     "enabled": true,
-    "exportStartBlock": 0,
+    "exportStartBlock": 3399250,
     "nodeTiemout": 30000,
     "reconnectInterval": 3000,
     "founderTokens": "2000000000000000000000000",
@@ -34,7 +34,7 @@
   },
   "mongo": {
     "url": "mongodb://localhost",
-    "dbName": "metronome"
+    "dbName": "metronome-api"
   },
   "newRelic": {},
   "port": 3002,

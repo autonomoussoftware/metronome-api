@@ -6,7 +6,8 @@
 
 [![Build Status](https://travis-ci.com/autonomoussoftware/metronome-api.svg?token=qEmtVFLbCgqTjfZqcnDs&branch=master)](https://travis-ci.com/autonomoussoftware/metronome-api)
 [![Code Style](https://img.shields.io/badge/code%20style-bloq-0063a6.svg)](https://github.com/bloq/eslint-config-bloq)
-[![Known Vulnerabilities](https://snyk.io/test/github/autonomoussoftware/metronome-api/badge.svg?targetFile=package.json)](https://snyk.io/test/github/autonomoussoftware/metronome-api)
+[![Known Vulnerabilities](https://snyk.io/test/github/autonomoussoftware/metronome-api/badge.svg)](https://snyk.io/test/github/autonomoussoftware/metronome-api)
+
 
 ## Index
 
@@ -33,9 +34,9 @@ The following environment variables are needed for the API to work:
 
   I.E. `ws://node.metronome.io:8546`.
 
-* `ETH_CHAIN`: The name of the Ethereum chain (`ropsten` or `mainnet`).
+* `ETH_CHAIN`: The name of the Ethereum chain.
 
-  I.E. `mainnet`.
+  I.E. `ropsten` or `mainnet`.
 
 * `MONGO_URL`: The Mongo instance URL.
 
@@ -43,7 +44,7 @@ The following environment variables are needed for the API to work:
 
 * `MONGO_DB_NAME`: The Mongo database name.
 
-  I.E. `metronome`.
+  I.E. `metronome-api`.
 
 ## Dev Setup
 
