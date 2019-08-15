@@ -6,9 +6,18 @@
     "bloq"
   ],
   "rules": {
-    "arrow-body-style": ["off"],
+    "arrow-body-style": "warn",
     "consistent-return": "warn",
-    "no-shadow": ["error", { "allow": ["err"] }],
-    "promise/no-promise-in-callback": "off"
+    "jsdoc/require-jsdoc": "off",
+    "no-shadow": [
+      "warn",
+      {
+        "allow": [
+          "err"
+        ]
+      }
+    ],
+    "promise/no-promise-in-callback": "warn",
+    "require-jsdoc": "off"
   }
 }
