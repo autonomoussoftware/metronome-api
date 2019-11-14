@@ -14,8 +14,7 @@ const loggeableConfig = Object.assign({}, config)
 delete loggeableConfig.__$
 
 logger.info('API is starting', loggeableConfig)
-
-const metApi = new MetApi(config, logger)
+const metApi = new MetApi('eth')
 
 beforeExit.do(function (signal) {
   logger.error('Shutting down API on signal', signal)

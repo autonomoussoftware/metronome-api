@@ -17,16 +17,12 @@ const newAccount3 = require('./fixture/new-account-3')
 const TOTAL_ACCOUNTS = 3
 
 describe('Account Routes', () => {
-  beforeAll(() => {
-    return metApi.start()
+  beforeAll(() => metApi.start()
       .then(() => connection.collection('accounts').remove({}))
-      .then(() => connection.collection('accounts').insertMany([newAccount1, newAccount2, newAccount3]))
-  })
+      .then(() => connection.collection('accounts').insertMany([newAccount1, newAccount2, newAccount3])))
 
-  afterAll(() => {
-    return connection.collection('accounts').remove({})
-      .then(() => metApi.stop())
-  })
+  afterAll(() => connection.collection('accounts').remove({})
+      .then(() => metApi.stop()))
 
   describe('Query Accounts Route - GET /account', () => {
     test('responds with all accounts', done => {

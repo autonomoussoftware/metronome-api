@@ -6,6 +6,8 @@
     "chain": "ropsten",
     "enabled": true,
     "exportStartBlock": 3399250,
+    "birthTime": 1529280000,
+    "isaEndTime": 1529884800,
     "nodeTiemout": 30000,
     "reconnectInterval": 3000,
     "founderTokens": "2000000000000000000000000",
