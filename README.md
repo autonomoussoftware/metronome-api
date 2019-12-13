@@ -16,6 +16,8 @@
 1.  [Dev Setup](#dev-Setup)
 1.  [Prod Setup](#prod-setup)
 1.  [REST API](#rest-api)
+    * [Dashboard API](#dashboard-api)
+    * [ACC Market API](doc/acc-market-api.md)
 1.  [Query, Pagination & Sorting](#query-pagination-&-sorting)
 1.  [WebSockets Events](#websockets-events)
 1.  [License](#license)
@@ -266,6 +268,8 @@ npm start
 
   Similar to `GET /history` but will use a downsampling algorithm that is better suited for auction data.
   Therefore the data points will represent much better the actual auction price behavior over time, removing the consecutive equal-price data points first and then downsampling.
+
+### Dashboard API
 
 * `GET /dashboard`
 
