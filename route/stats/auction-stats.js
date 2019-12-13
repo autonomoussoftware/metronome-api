@@ -2,9 +2,10 @@
 const moment = require('moment-timezone')
 const marketData = require('../../lib/market-data')
 const config = require('config')
+const BigNumber = require('bignumber.js')
 
 /** 
- * @typedef {object} BuyerCount
+ * @typedef {object} UniqueBuyerCount
  * @property {number} isa ISA unique buyers during given time frame.
  * @property {number} daily Daily unique buyers during given time frame.
  * @property {number} total Total unique buyers during given time frame.
@@ -15,43 +16,41 @@ const config = require('config')
  * 
  * @param {object} model Mongo model to run query over database.
  * @param {object} params Contains 'from' and 'to' for query.
- * @returns {BuyerCount} Unique buyer count
+ * @returns {UniqueBuyerCount} Unique buyer count
  */
 function getBuyerCount(model, params) {
-    const { from, to } = params
+  const { from, to } = params
 
-    const isaEndTime = config.eth.isaEndTime
-
-    // If given timeframe starts before ISA end and ends after ISA.
-    // In this condition we do calculate total, isa and daily unique buyers
-    if (from <= isaEndTime && to >= isaEndTime) {
-        return Promise.all([
-            model.distinct('metaData.returnValues.sender'),
-            model.distinct('metaData.returnValues.sender',
-                { 'metaData.timestamp': { $gt: from, $lt: isaEndTime } }),
-            model.distinct('metaData.returnValues.sender',
-                { 'metaData.timestamp': { $gt: isaEndTime, $lt: to } })
-        ]).then(([buyers, isaBuyers, dailyBuyers]) => {
-            const buyer = {}
-            buyer.total = buyers.length
-            buyer.isa = isaBuyers.length
-            buyer.daily = dailyBuyers.length
-            return buyer
-        })
-        // eslint-disable-next-line no-else-return
-    } else {
-        return model.distinct('metaData.returnValues.sender',
-            { 'metaData.timestamp': { $gt: from, $lt: to } })
-            .then(response => {
-                const buyer = {}
-                if (from > isaEndTime && to > isaEndTime) {
-                    buyer.daily = response.length
-                } else {
-                    buyer.isa = response.length
-                }
-                return buyer
-            })
-    }
+  const isaEndTime = config.eth.isaEndTime
+  const uniqueBuyerCount = {}
+  // If given timeframe starts before ISA end and ends after ISA.
+  // In this condition we do calculate total, isa and daily unique buyers
+  if (from <= isaEndTime && to >= isaEndTime) {
+    return Promise.all([
+      model.distinct('metaData.returnValues.sender'),
+      model.distinct('metaData.returnValues.sender',
+        { 'metaData.timestamp': { $gt: from, $lt: isaEndTime } }),
+      model.distinct('metaData.returnValues.sender',
+        { 'metaData.timestamp': { $gt: isaEndTime, $lt: to } })
+    ]).then(([buyers, isaBuyers, dailyBuyers]) => {
+      uniqueBuyerCount.isa = isaBuyers.length
+      uniqueBuyerCount.daily = dailyBuyers.length
+      uniqueBuyerCount.total = buyers.length
+      return uniqueBuyerCount
+    })
+    // eslint-disable-next-line no-else-return
+  } else {
+    return model.distinct('metaData.returnValues.sender',
+      { 'metaData.timestamp': { $gt: from, $lt: to } })
+      .then(response => {
+        if (from > isaEndTime && to > isaEndTime) {
+          uniqueBuyerCount.daily = response.length
+        } else {
+          uniqueBuyerCount.isa = response.length
+        }
+        return uniqueBuyerCount
+      })
+  }
 }
 
 /**
@@ -67,11 +66,11 @@ function getBuyerCount(model, params) {
  */
 
 function getRefundTransactionQuery(from, to) {
-    return {
-        'metaData.event': 'LogAuctionFundsIn',
-        'metaData.timestamp': { $gt: from, $lt: to },
-        '$expr': { $gt: [{ $toDouble: '$metaData.returnValues.refund' }, 0] }
-    }
+  return {
+    'metaData.event': 'LogAuctionFundsIn',
+    'metaData.timestamp': { $gt: from, $lt: to },
+    '$expr': { $gt: [{ $toDouble: '$metaData.returnValues.refund' }, 0] }
+  }
 }
 
 /** 
@@ -99,24 +98,31 @@ function getRefundTransactionQuery(from, to) {
  * @returns {LastAuctionPrices} Opening and closing price of last auction.
  */
 function getlastAuctionPrices(model) {
-    const from = moment().startOf('day').subtract(2, 'day').unix()
-    const to = moment().unix()
-    const query = getRefundTransactionQuery(from, to) // get last 2 days auction close event
-    return Promise.all([
-        marketData.getRate('ethereum'),
-        model.find(query).sort('-metaData.timestamp'),
-    ]).then(([rate, prices]) => {
-        const lastClosingPrice = {}
-        lastClosingPrice.eth = (prices[0].metaData.returnValues.purchasePrice) / 1e18
-        lastClosingPrice.usd = lastClosingPrice.eth * rate
+  const from = moment().startOf('day').subtract(2, 'day').unix()
+  const to = moment().unix()
+  const query = getRefundTransactionQuery(from, to)
+  return Promise.all([
+    marketData.getRate('ethereum'),
+    model.find(query).sort('-metaData.timestamp').lean()
+  ]).then(([rate, prices]) => {
+    const closingPrice = prices[0].metaData.returnValues.purchasePrice
+    const closingPriceBN = new BigNumber(closingPrice).dividedBy(1e18)
 
-        // Opening price is (previous days closing price * 2) + 1
-        const lastOpeningPrice = {}
-        lastOpeningPrice.eth = ((prices[1].metaData.returnValues.purchasePrice * 2) + 1) / 1e18
-        lastOpeningPrice.usd = lastOpeningPrice.eth * rate
+    const lastClosingPrice = {}
+    lastClosingPrice.eth = closingPriceBN.toFixed(18)
+    lastClosingPrice.usd = closingPriceBN.multipliedBy(rate).toFixed(2)
 
-        return { lastOpeningPrice, lastClosingPrice }
-    })
+    // Opening price is (previous days closing price * 2) + 1
+    const openingPrice = ((prices[1]
+      .metaData.returnValues.purchasePrice * 2) + 1)
+    const openingPriceBN = new BigNumber(openingPrice).dividedBy(1e18)
+
+    const lastOpeningPrice = {}
+    lastOpeningPrice.eth = openingPriceBN.toFixed(18)
+    lastOpeningPrice.usd = openingPriceBN.multipliedBy(rate).toFixed(2)
+
+    return { lastOpeningPrice, lastClosingPrice }
+  })
 }
 
 /**
@@ -132,18 +138,18 @@ function getlastAuctionPrices(model) {
  * @returns {string} Average auction duration in seconds.
  */
 function getAverageAuctionDuration(model, params) {
-    const { from, to, days } = params
-    const query = getRefundTransactionQuery(from, to)
-    return model.find(query).then(response => {
+  const { from, to, days } = params
+  const query = getRefundTransactionQuery(from, to)
+  return model.find(query).lean().then(response => {
 
-        let totalDifference = 0
-        response.forEach(event => {
-            const closingTime = event.metaData.timestamp
-            const midnight = moment.unix(closingTime).startOf('day').unix()
-            totalDifference += (closingTime - midnight)
-        })
-        return Math.floor(totalDifference / days)
+    let totalDifference = 0
+    response.forEach(event => {
+      const closingTime = event.metaData.timestamp
+      const midnight = moment.unix(closingTime).startOf('day').unix()
+      totalDifference += (closingTime - midnight)
     })
+    return Math.floor(totalDifference / days)
+  })
 }
 
 /** 
@@ -163,26 +169,34 @@ function getAverageAuctionDuration(model, params) {
  * @returns {AverageClosingPrice} Average closing price of auction.
  */
 function getAverageClosingPrice(model, params) {
-    const { from, to, days } = params
+  const { from, to, days } = params
 
-    const query = getRefundTransactionQuery(from, to)
-    const groupExpression = {
-        _id: null,
-        totalClosingPrice: { $sum: { $toDouble: '$metaData.returnValues.purchasePrice' } }
+  const query = getRefundTransactionQuery(from, to)
+  const groupExpression = {
+    _id: null,
+    totalClosingPrice: {
+      $sum: { $toDouble: '$metaData.returnValues.purchasePrice' }
     }
+  }
 
-    return Promise.all([
-        marketData.getRate('ethereum'),
-        model.aggregate().match(query).group(groupExpression).project('-_id totalClosingPrice')
-    ]).then(([rate, prices]) => {
-        const closingPrice = {}
-        closingPrice.eth = prices[0].totalClosingPrice / 1e18 / days
-        closingPrice.usd = closingPrice.eth * rate
-        return closingPrice
-    })
+  return Promise.all([
+    marketData.getRate('ethereum'),
+    model.aggregate()
+      .match(query)
+      .group(groupExpression)
+      .project('-_id totalClosingPrice')
+  ]).then(([rate, prices]) => {
+    const price = prices[0].totalClosingPrice
+    const priceBN = new BigNumber(price).dividedBy(1e18).dividedBy(days)
+    
+    const closingPrice = {}
+    closingPrice.eth = priceBN.toFixed(18)
+    closingPrice.usd = priceBN.multipliedBy(rate).toFixed(2)
+    return closingPrice
+  })
 }
 
 module.exports = {
-    getBuyerCount, getlastAuctionPrices,
-    getAverageAuctionDuration, getAverageClosingPrice
+  getBuyerCount, getlastAuctionPrices,
+  getAverageAuctionDuration, getAverageClosingPrice
 }

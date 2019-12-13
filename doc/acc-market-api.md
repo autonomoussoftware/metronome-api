@@ -2,11 +2,11 @@
 ACC(Autonomous Converter Contract) market API will present, MET data from ACC, 
 in standard format.
 
-- [ACC Market API](#ACC-Market-API)
-  - [Order Book](#Order-Book)
-  - [Ticker](#Ticker)
-  - [Trades](#Trades)
-  - [Volumes](#Volumes)
+- [ACC Market API](#acc-market-api)
+  - [Order Book](#order-book)
+  - [Ticker](#ticker)
+  - [Trades](#trades)
+  - [Volumes](#volumes)
 
 ## Order Book
 As Metronome in ACC doesn't support ask and bid, we have prepared virtual
@@ -49,7 +49,7 @@ GET /acc/orderbook
 ```
 
 | Name            | Description                            |
-| ---             | ---                                    |
+| --------------- | -------------------------------------- |
 | timestamp       | Request timestamp                      |
 | displayCurrency | Currency for ask and bid price         |
 | ask             | Array of virtual asks                  |
@@ -83,7 +83,7 @@ GET /acc/ticker
 ```
 
 | Name            | Description                              |
-| ---             | ---                                      |
+| --------------- | ---------------------------------------- |
 | name            | Token name                               |
 | symbol          | Token symbol                             |
 | decimals        | Number of decimals supported by token    |
@@ -104,7 +104,7 @@ GET /acc/trades?limit=2&sort=ASC
 ```
 
 | Name  | Description                | Optional | Accepted Values | Default           |
-| ---   | ---                        | --       | --              | --                |
+| ----- | -------------------------- | -------- | --------------- | ----------------- |
 | sort  | Sort response by timestamp | Yes      | `ASC`, `DESC`   | `DESC`            |
 | from  | Start time of interval     | Yes      | Unix timestamp  | Birth time of MET |
 | to    | End time fo interval       | Yes      | Unix timestamp  | now               |
@@ -132,7 +132,7 @@ GET /acc/trades?limit=2&sort=ASC
 ```
 
 | Name            | Description                 |
-| ---             | ---                         |
+| --------------- | --------------------------- |
 | displayCurrency | Currency for trade data     |
 | trades          | Array of trade data         |
 | price           | Trade price                 |
@@ -149,9 +149,9 @@ This API will return per day trade volume of MET.
 GET /acc/volumes?limit=2&sort=ASC
 ```
 | Name  | Description             | Optional | Accepted Values | Default |
-| ---   | ---                     | --       | --              | --      |
+| ----- | ----------------------- | -------- | --------------- | ------- |
 | sort  | Sort response by date   | Yes      | `ASC`, `DESC`   | `DESC`  |
-| limit | Numbr of results / days | Yes      |  Number         | 30      |
+| limit | Numbr of results / days | Yes      | Number          | 30      |
 
 **Response**
 ```json
@@ -171,7 +171,7 @@ GET /acc/volumes?limit=2&sort=ASC
 ```
 
 | Name            | Description          |
-| ---             | ---                  |
+| --------------- | -------------------- |
 | displayCurrency | Currency of volume   |
 | volumes         | Array of volume data |
 | date            | Date                 |
