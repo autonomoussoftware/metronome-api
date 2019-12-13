@@ -63,6 +63,7 @@ function accRouter(metApi) {
       data.low = lowPrice
       data.last = lastPrice
       data.volume = volume
+      data.displayCurrency = 'ETH'
 
       req.logger.verbose('Sending MET ACC ticker data to client')
       res.send(data)
@@ -76,9 +77,13 @@ function accRouter(metApi) {
 
     converter.getVolume(req.model('Event'), req.query)
       .then(data => {
+        const sort = req.query.sort
+        if (sort && sort.toUpperCase() ==='ASC') {
+          data.sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1)
+        }
 
         req.logger.verbose('Sending MET ACC historical volumes to client')
-        res.send({ data })
+        res.send({displayCurrency:'ETH', volumes: data})
       })
       .catch(error => next(error))
   }
@@ -89,12 +94,13 @@ function accRouter(metApi) {
 
     converter.getTradeData(req.model('Event'), req.query)
       .then(data => {
-        if (req.query.sort === 'ASC') {
+        const sort = req.query.sort
+        if (sort && sort.toUpperCase() ==='ASC') {
           data.sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1)
         }
 
         req.logger.verbose('Sending MET ACC trades to client')
-        res.send({ data })
+        res.send({ displayCurrency: 'ETH', trades: data })
       })
       .catch(error => next(error))
   }

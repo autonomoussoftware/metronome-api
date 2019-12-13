@@ -21,6 +21,8 @@ GET /acc/orderbook
 **Response**
 ```json
 {
+  "timestamp": "2019-12-13T18:41:15.369Z",
+  "displayCurrency": "ETH",
   "ask": [
     {
       "price": "0.003171262229005270",
@@ -42,18 +44,19 @@ GET /acc/orderbook
       "size": "41.306728610997319194"
     }
     ...
-  ],
-  "timestamp": "2019-12-12T22:31:50.757Z"
+  ]
 }
 ```
 
-| Name      | Description                 |
-| ---       | ---                         |
-| ask       | Array of virtual asks       |
-| bid       | Array of virtual bids       |
-| price     | Trade price level           |
-| size      | Trade volume at given price |
-| timestamp | Request timestamp           |
+| Name            | Description                            |
+| ---             | ---                                    |
+| timestamp       | Request timestamp                      |
+| displayCurrency | Currency for ask and bid price         |
+| ask             | Array of virtual asks                  |
+| bid             | Array of virtual bids                  |
+| price           | Trade price level                      |
+| size            | Trade volume, `in MET`, at given price |
+
 
 
 ## Ticker
@@ -70,24 +73,26 @@ GET /acc/ticker
   "name": "Metronome",
   "symbol": "MET",
   "decimals": 18,
-  "open": "0.003166524542614852",
-  "high": "0.003319880433994753",
-  "low": "0.003166524542614852",
-  "last": "0.003171304639762416",
-  "volume": "431.693087552694042137"
+  "open": "0.003176194388491891",
+  "high": "0.003324521127636560",
+  "low": "0.003174590215794194",
+  "last": "0.003176892969383660",
+  "volume": "432.756931717481652216",
+  "displayCurrency": "ETH"
 }
 ```
 
-| Name     | Description                              |
-| ---      | ---                                      |
-| name     | Name of token                            |
-| symbol   | Token symbol                             |
-| decimals | Number of decimals supported by token    |
-| oepn     | First trade price within last 24 hours   |
-| high     | Highest trade price within last 24 hours |
-| low      | Lowest trade price within last 24 hours  |
-| last     | Last trade price                         |
-| volume   | Total trade amount within last 24 hours  |
+| Name            | Description                              |
+| ---             | ---                                      |
+| name            | Token name                               |
+| symbol          | Token symbol                             |
+| decimals        | Number of decimals supported by token    |
+| oepn            | First trade price within last 24 hours   |
+| high            | Highest trade price within last 24 hours |
+| low             | Lowest trade price within last 24 hours  |
+| last            | Last trade price                         |
+| volume          | Total trade amount within last 24 hours  |
+| displayCurrency | Currency for ticker data                 |
 
 
 ## Trades
@@ -108,29 +113,32 @@ GET /acc/trades?limit=2&sort=ASC
 **Response**
 ```json
 {
-  "data": [
+  "displayCurrency": "ETH",
+  "trades": [
     {
-      "price": "0.003169907876358474",
-      "quantity": "2879.500004387422306622",
-      "side": "sell",
-      "timestamp": "2019-12-12T01:10:08.000Z"
+      "price": "0.003175497102641855",
+      "quantity": "409.250706483485655552",
+      "side": "buy",
+      "timestamp": "2019-12-13T01:19:32.000Z"
     },
     {
-      "price": "0.003171304639762416",
-      "quantity": "630.655275095184132424",
+      "price": "0.003176892969383660",
+      "quantity": "629.545917748690970884",
       "side": "buy",
-      "timestamp": "2019-12-12T11:33:49.000Z"
+      "timestamp": "2019-12-13T04:49:44.000Z"
     }
   ]
 }
 ```
 
-| Name      | Description                 |
-| ---       | ---                         |
-| price     | Trade price                 |
-| quantity  | Trade quantity              |
-| side      | Trade side, `buy` or `sell` |
-| timestamp | Trade timestamp             |
+| Name            | Description                 |
+| ---             | ---                         |
+| displayCurrency | Currency for trade data     |
+| trades          | Array of trade data         |
+| price           | Trade price                 |
+| quantity        | Trade quantity              |
+| side            | Trade side, `buy` or `sell` |
+| timestamp       | Trade timestamp             |
 
 
 ## Volumes
@@ -138,30 +146,33 @@ This API will return per day trade volume of MET.
 
 **Request**
 ```
-GET /acc/volumes?limit=2
+GET /acc/volumes?limit=2&sort=ASC
 ```
-| Name  | Description                | Optional | Accepted Values | Default |
-| ---   | ---                        | --       | --              | --      |
-| sort  | Sort response by timestamp | Yes      | `ASC`, `DESC`   | `DESC`  |
-| limit | Numbr of results / days    | Yes      |  Number         | 30      |
+| Name  | Description             | Optional | Accepted Values | Default |
+| ---   | ---                     | --       | --              | --      |
+| sort  | Sort response by date   | Yes      | `ASC`, `DESC`   | `DESC`  |
+| limit | Numbr of results / days | Yes      |  Number         | 30      |
 
 **Response**
 ```json
 {
-  "data": [
+  "displayCurrency": "ETH",
+  "volumes": [
     {
       "date": "2019-12-11",
       "volume": "431.581403541655591364"
     },
     {
-      "date": "2019-12-10",
-      "volume": "434.542514525748803174"
+      "date": "2019-12-12",
+      "volume": "431.545652004860015191"
     }
   ]
 }
 ```
 
-| Name   | Description  |
-| ---    | ---          |
-| date   | Date         |
-| volume | Trade volume |
+| Name            | Description          |
+| ---             | ---                  |
+| displayCurrency | Currency of volume   |
+| volumes         | Array of volume data |
+| date            | Date                 |
+| volume          | Trade volume of day  |

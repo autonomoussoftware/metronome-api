@@ -28,7 +28,7 @@ function random(min, max) {
  * string param instead of uint256 param.
  * https://github.com/ethereum/web3.js/issues/2077
  * 
- * @param {Object} acc Autonomous Converter Contract instance.
+ * @param {object} acc Autonomous Converter Contract instance.
  * @returns {Array.<Ask>} Virtual Metronome asks.
  */
 async function calculateAsks(acc) {
@@ -61,7 +61,7 @@ async function calculateAsks(acc) {
  * string param instead of uint256 param.
  * https://github.com/ethereum/web3.js/issues/2077
  * 
- * @param {Object} acc Autonomous Converter Contract instance.
+ * @param {object} acc Autonomous Converter Contract instance.
  * @returns {Array.<Bid>} Virtual Metronome bids.
  */
 async function calculateBids(acc) {
@@ -93,7 +93,7 @@ async function calculateBids(acc) {
 /**
  * Get virtual order book of Metronome.
  * 
- * @param {Object} acc Autonomous Converter Contract instance.
+ * @param {object} acc Autonomous Converter Contract instance.
  * @returns {OrderBook} Virtual order book of Metronome.
  */
 function getOrderBook(acc) {
@@ -105,7 +105,7 @@ function getOrderBook(acc) {
     ask.sort((a, b) => (Number.parseFloat(a.size) > Number.parseFloat(b.size)) ? 1 : -1)
     bid.sort((a, b) => (Number.parseFloat(a.size) > Number.parseFloat(b.size)) ? 1 : -1)
     const timestamp = new Date()
-    return { ask, bid, timestamp }
+    return { timestamp, displayCurrency: 'ETH', ask, bid }
   })
 }
 
