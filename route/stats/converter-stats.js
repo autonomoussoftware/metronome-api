@@ -1,6 +1,7 @@
 'use strict'
 
 const marketData = require('../../lib/market-data')
+const BigNumber = require('bignumber.js')
 
 /** 
  * @typedef {object} Conversions
@@ -64,19 +65,28 @@ function conversions(model, params) {
         count.sell = Math.ceil(sellCount / days)
         count.total = count.buy + count.sell
 
+        const buyEth = new BigNumber(buy[0].totalEth)
+        const sellEth = new BigNumber(sell[0].totalEth)
+
+        const buyPrice = buyEth.dividedBy(buy[0].totalMet)
+        const sellPrice = sellEth.dividedBy(sell[0].totalMet)
+
+        const ethIn = buyEth.dividedBy(1e18).dividedBy(days)
+        const ethOut = sellEth.dividedBy(1e18).dividedBy(days)
+
         eth.price = {}
-        eth.price.buy = buy[0].totalEth / buy[0].totalMet
-        eth.price.sell = sell[0].totalEth / sell[0].totalMet
-        eth.in = buy[0].totalEth / 1e18 / days
-        eth.out = sell[0].totalEth / 1e18 / days
-        eth.total = eth.in + eth.out
+        eth.price.buy = buyPrice.toFixed(18)
+        eth.price.sell = sellPrice.toFixed(18)
+        eth.in = ethIn.toFixed(18)
+        eth.out = ethOut.toFixed(18)
+        eth.total = ethIn.plus(ethOut).toFixed(18)
 
         usd.price = {}
-        usd.price.buy = eth.price.buy * rate
-        usd.price.sell = eth.price.sell * rate
-        usd.in = eth.in * rate
-        usd.out = eth.out * rate
-        usd.total = eth.total * rate
+        usd.price.buy = buyPrice.multipliedBy(rate).toFixed(2)
+        usd.price.sell = sellPrice.multipliedBy(rate).toFixed(2)
+        usd.in = ethIn.multipliedBy(rate).toFixed(2)
+        usd.out = ethOut.multipliedBy(rate).toFixed(2)
+        usd.total = ethIn.plus(ethOut).multipliedBy(rate).toFixed(2)
 
         return { count, eth, usd }
     })
