@@ -1,7 +1,31 @@
 'use strict'
 const BigNumber = require('bignumber.js')
+const config = require('config')
+const fetch = require('node-fetch')
 const moment = require('moment')
 
+/**
+ * Get gas price from ETH Gas Station based on provided priority
+ * 
+ * @param {string} priority Transaction priority.
+ * @returns {number} Gas price based on provided priority.
+ */
+function getGasPrice(priority) {
+  return fetch(config.eth.ethGasStationUrl)
+    .then(res => res.json())
+    .then(data => {
+      if (data) {
+        switch (priority) {
+          case 'LOW':
+            return data.average * 1e8 // in Wei
+          case 'MEDIUM':
+            return data.fast * 1e8
+          case 'HIGH':
+            return data.fastest * 1e8
+        }
+      }
+    })
+}
 
 /**
  * Generate random number bwtween provided min and max
@@ -172,6 +196,87 @@ function getPrices(model, params) {
     })
 }
 
+/**
+ * Get amount of ETH for buy/sell of MET.
+ *
+ * @param {object} acc Autonomous Converter Contract instance.
+ * @param {object} params {amount, side}. Params send to API.
+ * @returns {string} ETH, in WEI, that user will need/get in case of buy/sell MET.
+ */
+async function getQuote(acc, params) {
+  const amount = new BigNumber(params.amount).multipliedBy(1e18).toFixed()
+  if (params.side === 'SELL') {
+    const sellEth = await acc.methods.getEthForMetResult(amount).call()
+    return new BigNumber(sellEth).dividedBy(1e18).toFixed(18)
+  } else if (params.side === 'BUY') {
+    const sellEth = await acc.methods.getEthForMetResult(amount).call()
+
+    let buyMet = 0
+    let ethNeeded = ''
+
+    let slippagePercentage = 1 // 1%
+    while (new BigNumber(buyMet).isLessThan(amount)) {
+      const multiplier = 1 + (slippagePercentage / 100)
+      ethNeeded = new BigNumber(sellEth).multipliedBy(multiplier).integerValue().toString()
+      buyMet = await acc.methods.getMetForEthResult(ethNeeded).call()
+      slippagePercentage++
+    }
+    return new BigNumber(ethNeeded).dividedBy(1e18).toFixed(18)
+  }
+}
+
+/** 
+ * @typedef {object} Transaction
+ * @property {string} from from address aka user address.
+ * @property {string} to ACC address, as user will be buying/selling from/to ACC.
+ * @property {string} data Encoded abi for contract call.
+ * @property {string} value Amount of ETH being send for this transaction.
+ * @property {string} gas Amount of gas needed for this transaction.
+ * @property {string} gasPrice Price of gas.
+ * @property {string} nonce Transaction nonce.
+*/
+
+/**
+ * Get transaction data which is prepared using user provided data.
+ *
+ * @param {object} acc Autonomous Converter Contract instance.
+ * @param {object} web3 web3 instance.
+ * @param {object} params params provided by user i.e. userAddress, side, amount etc.
+ * @returns {Transaction} Transaction data, it can be signed and send using web3.
+ */
+async function getTransaction(acc, web3, params) {
+  const { priority, userAddress, nonce, side } = params
+  const amount = new BigNumber(params.amount).multipliedBy(1e18).toFixed()
+  const minReturn = new BigNumber(params.minReturn).multipliedBy(1e18).toFixed()
+
+  const transaction = {}
+  transaction.from = userAddress
+  transaction.to = acc._address
+
+  if (side === 'BUY') {
+    transaction.data = acc.methods.convertEthToMet(minReturn).encodeABI()
+    transaction.value = web3.utils.toHex(amount)
+    const gas = await acc.methods.convertEthToMet(minReturn).estimateGas({ from: userAddress, value: amount })
+    transaction.gas = web3.utils.toHex(gas)
+  } else if (side === 'SELL') {
+    transaction.data = acc.methods.convertMetToEth(amount, minReturn).encodeABI()
+    transaction.value = '0x0'
+    const gas = await acc.methods.convertMetToEth(amount, minReturn).estimateGas({ from: userAddress })
+    transaction.gas = web3.utils.toHex(gas)
+  }
+
+  const gasPrice = await getGasPrice(priority)
+  transaction.gasPrice = web3.utils.toHex(gasPrice)
+
+  if (nonce) {
+    transaction.nonce = web3.utils.toHex(nonce)
+  } else {
+    transaction.nonce = web3.utils.toHex(await web3.eth.getTransactionCount(userAddress))
+  }
+
+  return transaction
+}
+
 /** 
 * @typedef {object} MetTrade
 * @property {string} price Metronome trade price of this trade.
@@ -295,4 +400,4 @@ function getVolume24(model, params) {
       new BigNumber(trades[0].totalEth).dividedBy(1e18).toFixed(18))
 }
 
-module.exports = { getOrderBook, getPrices, getTradeData, getVolume, getVolume24 } 
+module.exports = { getOrderBook, getPrices, getQuote, getTradeData, getTransaction, getVolume, getVolume24 } 
