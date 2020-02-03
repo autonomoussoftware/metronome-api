@@ -8,6 +8,20 @@ const moment = require('moment-timezone')
 function accRouter(metApi) {
   const router = new Router()
 
+  function parseQuoteParams(req, res, next) {
+    const { amount, side } = req.query
+    try {
+      if (!amount || !side) {
+        throw new Error('Param \'amount\' and \'side\' are required.')
+      }
+      if (side.toUpperCase() !== 'BUY' && side.toUpperCase() !== 'SELL') {
+        throw new Error('Only \'buy\' and \'sell\' are allowed as value for \'side\'.')
+      }
+      req.query.side = side.toUpperCase()
+      next()
+    } catch (error) { next(error) }
+  }
+
   function parseTradeParams(req, res, next) {
     const { query } = req
     try {
@@ -18,6 +32,24 @@ function accRouter(metApi) {
     } catch (error) {
       next(error)
     }
+  }
+
+  function parseTransactionParams(req, res, next) {
+    const { amount, minReturn, priority, side, userAddress } = req.query
+    try {
+      if (!amount || !minReturn || !priority || !side || !userAddress) {
+        throw new Error('Param \'amount\', \'minReturn\', \'priority\', \'side\' and \'userAddress\' are required.')
+      }
+      if (side.toUpperCase() !== 'BUY' && side.toUpperCase() !== 'SELL') {
+        throw new Error('Only Buy and Sell are allowed as value for \'side\'.')
+      }
+      if(!['LOW', 'MEDIUM', 'HIGH'].includes(priority.toUpperCase())){
+        throw new Error('Only Low, Medium and High are allowed as value for \'priority\'.')
+      }
+      req.query.side = side.toUpperCase()
+      req.query.priority = priority.toUpperCase()
+      next()
+    } catch (error) { next(error) }
   }
 
   function parseVolumeParams(req, res, next) {
@@ -78,12 +110,24 @@ function accRouter(metApi) {
     converter.getVolume(req.model('Event'), req.query)
       .then(data => {
         const sort = req.query.sort
-        if (sort && sort.toUpperCase() ==='ASC') {
+        if (sort && sort.toUpperCase() === 'ASC') {
           data.sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1)
         }
 
         req.logger.verbose('Sending MET ACC historical volumes to client')
-        res.send({displayCurrency:'ETH', volumes: data})
+        res.send({ displayCurrency: 'ETH', volumes: data })
+      })
+      .catch(error => next(error))
+  }
+
+  function quote(req, res, next) {
+    const logQuery = JSON.stringify(req.query)
+    req.logger.info(`Querying quote amount for trade: ${logQuery}`)
+
+    const acc = metApi.ethApi.metronomeContracts.AutonomousConverter
+    converter.getQuote(acc, req.query)
+      .then(data => {
+        res.send({ quote: data })
       })
       .catch(error => next(error))
   }
@@ -95,7 +139,7 @@ function accRouter(metApi) {
     converter.getTradeData(req.model('Event'), req.query)
       .then(data => {
         const sort = req.query.sort
-        if (sort && sort.toUpperCase() ==='ASC') {
+        if (sort && sort.toUpperCase() === 'ASC') {
           data.sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1)
         }
 
@@ -105,10 +149,24 @@ function accRouter(metApi) {
       .catch(error => next(error))
   }
 
+  async function transaction(req, res, next) {
+    const logQuery = JSON.stringify(req.query)
+    req.logger.info(`Querying transaction data for trade: ${logQuery}`)
+
+    const acc = metApi.ethApi.metronomeContracts.AutonomousConverter
+    converter.getTransaction(acc, metApi.ethApi.web3, req.query)
+      .then(data => {
+        res.send(data)
+      })
+      .catch(error => next(error))
+  }
+
   router.get('/', accData, ticker)
   router.get('/orderbook', orderBook)
+  router.get('/quote', parseQuoteParams, quote)
   router.get('/ticker', ticker)
   router.get('/trades', parseTradeParams, trades)
+  router.get('/transaction', parseTransactionParams, transaction)
   router.get('/volumes', parseVolumeParams, historicalVolumes)
   return router
 }

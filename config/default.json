@@ -13,7 +13,8 @@
     "founderTokens": "2000000000000000000000000",
     "ipcPath": "/Library/Ethereum/geth.ipc",
     "minterAddress": "0x0000000000000000000000000000000000000000",
-    "webSocketUrl": "ws://localhost:8546"
+    "webSocketUrl": "ws://localhost:8546",
+    "ethGasStationUrl": "https://ethgasstation.info/json/ethgasAPI.json"
   },
   "history": {
     "auctionOversampling": 10,
@@ -36,7 +37,7 @@
   },
   "mongo": {
     "url": "mongodb://localhost",
-    "dbName": "metronome-api"
+    "dbName": "ropsten-metronome-api"
   },
   "newRelic": {},
   "port": 3002,

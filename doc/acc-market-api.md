@@ -3,10 +3,37 @@ ACC(Autonomous Converter Contract) market API will present, MET data from ACC,
 in standard format.
 
 - [ACC Market API](#acc-market-api)
+  - [Quote](#quote)
   - [Order Book](#order-book)
   - [Ticker](#ticker)
   - [Trades](#trades)
+  - [Transaction](#transaction)
   - [Volumes](#volumes)
+
+
+## Quote
+This API will return estimated amount of ETH needed to buy/received when selling MET.
+Quote amount is calculated based on amount of MET and side of trade.
+
+**Request**
+```
+GET /acc/quote?amount=10.65&side=buy
+```
+| Name   | Description   | Required | Type          | Accepted Values |
+| ------ | ------------- | -------- | ------------- | --------------- |
+| amount | MET quantity  | Yes      | string, float |                 |
+| side   | Type of trade | Yes      | string        | BUY, SELL       |
+
+**Response**
+```json
+{
+  "quote":"0.013331499371862938"
+}
+```
+| Name  | Description            |
+| ----- | ---------------------- |
+| quote | Amount of ETH `in WEI` |
+
 
 ## Order Book
 As Metronome in ACC doesn't support ask and bid, we have prepared virtual
@@ -58,7 +85,6 @@ GET /acc/orderbook
 | size            | Trade volume, `in MET`, at given price |
 
 
-
 ## Ticker
 This API will return ticker information of MET.
 
@@ -103,12 +129,12 @@ This API will return MET trades.
 GET /acc/trades?limit=2&sort=ASC
 ```
 
-| Name  | Description                | Optional | Accepted Values | Default           |
-| ----- | -------------------------- | -------- | --------------- | ----------------- |
-| sort  | Sort response by timestamp | Yes      | `ASC`, `DESC`   | `DESC`            |
-| from  | Start time of interval     | Yes      | Unix timestamp  | Birth time of MET |
-| to    | End time fo interval       | Yes      | Unix timestamp  | now               |
-| limit | Numbr of results           | Yes      | 1-1000          | 100               |
+| Name  | Description                | Required | Type           | Accepted Values | Default           |
+| ----- | -------------------------- | -------- | -------------- | --------------- | ----------------- |
+| sort  | Sort response by timestamp | No       | string         | `ASC`, `DESC`   | `DESC`            |
+| from  | Start time of interval     | No       | unix timestamp |                 | Birth time of MET |
+| to    | End time fo interval       | No       | unix timestamp |                 | now               |
+| limit | Numbr of results           | No       | number         | 1-1000          | 100               |
 
 **Response**
 ```json
@@ -141,6 +167,48 @@ GET /acc/trades?limit=2&sort=ASC
 | timestamp       | Trade timestamp             |
 
 
+## Transaction
+This API will return transaction data. It can be signed and submitted to blockchain for execution.
+
+**Request**
+```
+GET /acc/transaction?amount=0.212059178929925514&minReturn=165.3654278&priority=low&side=buy&userAddress=0xbb3D5B5a32038b89F37581b108486F2432b8D64c
+```
+| Name         | Description                        | Required | Type          | Accepted Values   |
+| ------------ | ---------------------------------- | -------- | ------------- | ----------------- |
+| amount       | Source token quantity              | Yes      | string, float |                   |
+| min_return   | Minimum destination token accepted | Yes      | string        |                   |
+| priority     | Transaction priority               | Yes      | string        | Low, Medium, High |
+| nonce        | Nonce of account                   | No       | string        |                   |
+| side         | Type of trade                      | Yes      | string        | BUY, SELL         |
+| user_address | User wallet address                | Yes      | string        |                   |
+
+> To buy 50 MET, `min_return` will be 50 and you can calculate ETH `amount` using `/quote?amount=50&side=buy` API.
+> To sell 10 MET, `amount` wil be 10 and you can calcualte ETH `min_return` using `/quote?amount=10&side=sell` API.
+
+**Response**
+```json
+{
+  "from":"0xbb3D5B5a32038b89F37581b108486F2432b8D64c",
+  "to":"0x638E84db864AA345266e1AEE13873b860aFe82e7",
+  "data":"0xc171747b000000000000000000000000000000000000000000000008f6e80470c5817000",
+  "value":"0x2f162b31f7aad8a",
+  "gas":"0x2bc2e",
+  "gasPrice":"0x766b5e35",
+  "nonce":"0x0"
+}
+```
+| Name     | Description                                                 |
+| -------- | ----------------------------------------------------------- |
+| from     | User wallet address                                         |
+| to       | ACC address                                                 |
+| data     | Encoded abi data of contract call                           |
+| value    | ETH being transfer, if buying MET                           |
+| gas      | Gas requried for this transaction. Do not change this value |
+| gasPrice | Calculated gas price based on provided priority.            |
+| nonce    | Nonce of the account                                        |
+> If `nonce` is not provided in request and multiple requests are submitted at same time then API will return same nonce.
+
 ## Volumes
 This API will return per day trade volume of MET.
 
@@ -148,10 +216,10 @@ This API will return per day trade volume of MET.
 ```
 GET /acc/volumes?limit=2&sort=ASC
 ```
-| Name  | Description             | Optional | Accepted Values | Default |
-| ----- | ----------------------- | -------- | --------------- | ------- |
-| sort  | Sort response by date   | Yes      | `ASC`, `DESC`   | `DESC`  |
-| limit | Numbr of results / days | Yes      | Number          | 30      |
+| Name  | Description             | Required | Type   | Accepted Values | Default |
+| ----- | ----------------------- | -------- | ------ | --------------- | ------- |
+| sort  | Sort response by date   | No       | string | `ASC`, `DESC`   | `DESC`  |
+| limit | Numbr of results / days | No       | number | any number      | 30      |
 
 **Response**
 ```json
