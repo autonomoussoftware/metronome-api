@@ -105,7 +105,11 @@ function getlastAuctionPrices(model) {
     marketData.getRate('ethereum'),
     model.find(query).sort('-metaData.timestamp').lean()
   ]).then(([rate, prices]) => {
-    const closingPrice = prices[0].metaData.returnValues.purchasePrice
+    let closingPrice = 0
+    if (prices[0]) {
+      closingPrice = prices[0].metaData.returnValues.purchasePrice
+    }
+
     const closingPriceBN = new BigNumber(closingPrice).dividedBy(1e18)
 
     const lastClosingPrice = {}
@@ -186,7 +190,10 @@ function getAverageClosingPrice(model, params) {
       .group(groupExpression)
       .project('-_id totalClosingPrice')
   ]).then(([rate, prices]) => {
-    const price = prices[0].totalClosingPrice
+    let price = 0
+    if (prices[0]) {
+      price = prices[0].totalClosingPrice
+    }
     const priceBN = new BigNumber(price).dividedBy(1e18).dividedBy(days)
     
     const closingPrice = {}

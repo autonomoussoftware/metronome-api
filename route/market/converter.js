@@ -181,6 +181,9 @@ function getPrices(model, params) {
     .group(groupExpression)
     .project('-_id max min ethOpen metOpen ethLast metLast')
     .then(trades => {
+      if (!trades[0]) {
+        return { highPrice: 0, lowPrice: 0, openPrice: 0, lastPrice: 0 }
+      }
       const highPrice = new BigNumber(trades[0].max).toFixed(18)
       const lowPrice = new BigNumber(trades[0].min).toFixed(18)
 
@@ -336,7 +339,7 @@ function getTradeData(model, params) {
  * @param {object} params {from, to}. point in time.
  * @returns {Array.<MetVolume>} Array of metronome trade volume data.
  */
-function getVolume(model, params) {
+function getVolumes(model, params) {
   const { from, to } = params
   const tradeQuery = {
     'metaData.timestamp': { $gt: from, $lt: to },
@@ -396,8 +399,12 @@ function getVolume24(model, params) {
     .match(tradeQuery)
     .group(groupExpression)
     .project('-_id totalEth')
-    .then(trades =>
-      new BigNumber(trades[0].totalEth).dividedBy(1e18).toFixed(18))
+    .then(trades => {
+      if (!trades[0]) {
+        return 0
+      }
+      return new BigNumber(trades[0].totalEth).dividedBy(1e18).toFixed(18)
+    })
 }
 
-module.exports = { getOrderBook, getPrices, getQuote, getTradeData, getTransaction, getVolume, getVolume24 } 
+module.exports = { getOrderBook, getPrices, getQuote, getTradeData, getTransaction, getVolumes, getVolume24 } 
