@@ -107,7 +107,7 @@ function accRouter(metApi) {
     const logQuery = JSON.stringify(req.query)
     req.logger.info(`Querying MET ACC historical volumes: ${logQuery}`)
 
-    converter.getVolume(req.model('Event'), req.query)
+    converter.getVolumes(req.model('Event'), req.query)
       .then(data => {
         const sort = req.query.sort
         if (sort && sort.toUpperCase() === 'ASC') {
