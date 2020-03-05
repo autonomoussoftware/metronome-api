@@ -216,10 +216,10 @@ This API will return per day trade volume of MET.
 ```
 GET /acc/volumes?limit=2&sort=ASC
 ```
-| Name  | Description             | Required | Type   | Accepted Values | Default |
-| ----- | ----------------------- | -------- | ------ | --------------- | ------- |
-| sort  | Sort response by date   | No       | string | `ASC`, `DESC`   | `DESC`  |
-| limit | Numbr of results / days | No       | number | any number      | 30      |
+| Name  | Description               | Required | Type   | Accepted Values | Default |
+| ----- | ------------------------- | -------- | ------ | --------------- | ------- |
+| sort  | Sort response by date     | No       | string | `ASC`, `DESC`   | `DESC`  |
+| limit | Number of results or days | No       | number | any number      | 30      |
 
 **Response**
 ```json

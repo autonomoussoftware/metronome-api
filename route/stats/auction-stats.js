@@ -117,8 +117,10 @@ function getlastAuctionPrices(model) {
     lastClosingPrice.usd = closingPriceBN.multipliedBy(rate).toFixed(2)
 
     // Opening price is (previous days closing price * 2) + 1
-    const openingPrice = ((prices[1]
-      .metaData.returnValues.purchasePrice * 2) + 1)
+    let openingPrice = 0
+    if (prices[1]) {
+      openingPrice = (prices[1].metaData.returnValues.purchasePrice * 2) + 1
+    }
     const openingPriceBN = new BigNumber(openingPrice).dividedBy(1e18)
 
     const lastOpeningPrice = {}
@@ -195,7 +197,7 @@ function getAverageClosingPrice(model, params) {
       price = prices[0].totalClosingPrice
     }
     const priceBN = new BigNumber(price).dividedBy(1e18).dividedBy(days)
-    
+
     const closingPrice = {}
     closingPrice.eth = priceBN.toFixed(18)
     closingPrice.usd = priceBN.multipliedBy(rate).toFixed(2)
