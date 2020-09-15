@@ -48,7 +48,7 @@
     "mongoose-count-and-find": "1.0.0",
     "mongoose-cu-timestamps": "1.0.0",
     "newrelic": "4.1.2",
-    "node-fetch": "2.6.0",
+    "node-fetch": "2.6.1",
     "on-finished": "2.3.0",
     "pretty-ms": "3.2.0",
     "promise-all-props": "1.0.1",
